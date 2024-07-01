@@ -2,10 +2,12 @@
 
 #include "ClassPers.h"
 
+
 class Animation
 {
 private:
-	std::vector <sf::IntRect> frames, frames_flip;
+	std::vector <sf::IntRect> frames;
+	std::vector <sf::IntRect> frames_flip;
 
 	sf::Sprite sprite;
 
@@ -23,8 +25,12 @@ public:
 	sf::Sprite GetSprite();
 	void SetFlip(bool b);
 	void SetIsPl(bool b);
+	void SetPos(float x, float y);
+
 	
 
+	bool getFlip();
+	
 };
 
 class AnimManager
@@ -38,12 +44,15 @@ public:
 	AnimManager(){}
 
 	void create(sf::String name, sf::Texture &t, int x, int y,  int w ,int h , int count, float speed, int step);
-	void draw(sf::RenderWindow &window, int x = 0, int y = 0);
+	void draw(sf::RenderWindow &window, float x, float y);
 	void set(sf::String name);
 	void flip(bool b);
 	void tick(float time);
 	void pause();
 	void play();
 
+	bool getAnimFlip();
+
+	
 
 };
