@@ -7,22 +7,22 @@
 
 Pers::Pers(AnimManager &a)
 {
-	this->x = 50;
-	this->y = 50;
-	this->anim = a;
+	x = 0;
+	y = 0;
+	anim = a;
 	STATE = State::stay;
 }
 
 void Pers::KeyCheck()
 {
 	//////////////Õ¿∆¿“»≈  À¿¬»ÿ///////////////////
-	if (key["L"])
+	if (key["Left"])
 	{
 		dir = true;
 		if (STATE != State::duck) dx = -0.1;
 		if (STATE == State::stay) STATE = State::walk;
 	}
-	if (key["R"])
+	if (key["Right"])
 	{
 		dir = false;
 		if (STATE != State::duck) dx = 0.1;
@@ -44,32 +44,32 @@ void Pers::KeyCheck()
 	}
 
 	//////////////Œ“œ”— ¿Õ»≈  À¿¬»ÿ///////////////////
-	if (!(key["R"] || key["L"]))
+	if (!(key["Right"] || key["Left"]))
 	{
-		std::cout << "R or L" << std::endl;
+		
 		dx = 0;
 		if (STATE == State::walk) STATE = State::stay;
 	}
 	if (!(key["Up"] || key["Down"]))
 	{
-		std::cout << "Up or Down" << std::endl;
+		
 		if (STATE == State::swim || STATE == State::climb) dy = 0;
 	}
 	if (!key["Down"])
 	{
-		std::cout << "Down" << std::endl;
+		
 		if (STATE == State::duck) { STATE = State::stay; }
 	}
 	if (!key["Space"])
 	{
-		std::cout << "Space" << std::endl;
+		
 		shoot = false;
 	}
 }
 
 void Pers::update(float time)
 {
-	this->KeyCheck();
+	KeyCheck();
 
 	if (STATE == State::stay) anim.set("stay");
 	if (STATE == State::walk) anim.set("walk");
@@ -78,7 +78,9 @@ void Pers::update(float time)
 
 	if (shoot) { anim.set("shoot"); }
 
-	if (dir) anim.flip(true);
+	if(dir) anim.flip(true);
+	else anim.flip(false);
+
 	x += dx * time;
 	if (!onGround) dy += 0.0005 * time;
 
@@ -89,6 +91,14 @@ void Pers::update(float time)
 	if (y > GROUND) { y = GROUND; dy = 0; onGround = true; }
 	anim.tick(time);
 
-	key["L"] = key["R"] = key["Up"] = key["Down"] = key["Space"] = false;
+	key["Left"] = false;
+	key["Right"] = false;
+	key["Up"] = false;
+	key["Down"] = false;
+	key["Space"] = false;
+}
+void Pers::draw(sf::RenderWindow &window)
+{
+	anim.draw(window, x, y);
 }
 

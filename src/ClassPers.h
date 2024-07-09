@@ -37,5 +37,6 @@ public:
 	Pers(AnimManager &a);
 	void KeyCheck();
 	void update(float time);
+	void draw(sf::RenderWindow &window);
 };
 
