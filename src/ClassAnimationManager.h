@@ -1,6 +1,7 @@
 #pragma once
 
-#include "ClassPers.h"
+#include <SFML/Audio.hpp>
+#include <SFML/Graphics.hpp>
 
 
 class Animation
@@ -18,7 +19,8 @@ private:
 	float Speed;
 public:
 	Animation(sf::Texture& t, int x, int y, int w, int h, int count, float speed, int step);
-	Animation(){}
+	Animation() {}
+	
 
 	void tick(float time); 
 
@@ -52,7 +54,5 @@ public:
 	void play();
 
 	bool getAnimFlip();
-
-	
 
 };

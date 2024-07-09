@@ -9,43 +9,33 @@
 #define GROUND 200
 
 
-//class Pers
-//{
-//private:
-//
-//	AnimManager body;
-//	Animation tail;
-//
-//	float dx;
-//	float dy;
-//	float x;
-//	float y;
-//
-//	bool shoot;
-//	bool hit;
-//
-//	enum {stay, walk, jump } STATE;
-//	std::map<std::string, bool> key;
-//
-//
-//	
-//
-//public:
-//	Pers(AnimManager &a, Animation &t);
-//
-//	void KeyCheck();
-//
-//	void update(float time);
-//
-//	float getDX();
-//	float getDY();
-//
-//	sf::Sprite getSprite();
-//
-//	bool getOnGr();
-//
-//	void setDX(float x);
-//	void setDY(float y);
-//	void setOnGr(bool n);
-//
-//};
+
+
+class Pers
+{
+private:
+
+	AnimManager anim;
+
+	float dx = 0;
+	float dy = 0;
+	float x;
+	float y;
+
+
+	bool dir = false;
+	bool shoot = false;
+	bool hit = false;
+	bool duck = false;
+	bool onGround = true;
+
+public:
+
+	enum class State : unsigned int { stay, walk, jump, duck, swim, climb } STATE;
+	std::map<std::string, bool> key;
+
+	Pers(AnimManager &a);
+	void KeyCheck();
+	void update(float time);
+};
+
