@@ -8,43 +8,65 @@ const int H = 12;
 const int W = 40;
 
 std::string TileMap[H] = {
- "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
- "B                                      B",
- "B                                      B",
- "B                                      B",
- "B                                      B",
- "B                         BBBBBBBBBBBBBB",
+ "B                                      S",
+ "B                                      S",
+ "B                                      S",
+ "B                                      S",
+ "B                                      S",
+ "B                         SSSSSSSSSSSSSS",
  "B                                      B",
  "BBBBBBB                                B",
- "B                     BBBBB            B",
- "B                  BBBBBBBBBB          B",
- "B                 BBBBBBBBBBBB         B",
- "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB"
+ "B                     KKKK             B",
+ "B                  GGGGGGGGG           B",
+ "B                 GBBBBBBBBBGG         B",
+ "BGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGB"
 };
+
+
 
 
 int main()
 {
+    
  
-    sf::RenderWindow window(sf::VideoMode(640, 420), "Game!");
+    sf::RenderWindow window(sf::VideoMode(640, 480), "Game!");
 
     sf::Texture q;
+
+    sf::Texture Green;
+    sf::Texture Brow;
+    sf::Texture Kust;
+    sf::Texture Sky;
+    sf::Texture Stone;
 
     AnimManager anim;
     anim.create("walk", q, 0, 0, 42, 44, 6, 0.005, 42);
     anim.create("stay", q, 0, 44, 42, 48, 1, 0.005, 42);
-    anim.create("shoot", q, 0, 92, 48, 48, 2, 0.003, 48);
+    anim.create("shoot", q, 0, 92, 60, 48, 5, 0.006, 60);
     anim.create("duck", q, 0, 218, 44, 49, 1, 0.003, 44);
+    anim.create("shootrun", q, 0, 267, 59, 44, 6, 0.005, 59);
     Pers Player(anim);
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
+    if (!Green.loadFromFile("img//GreenTile1.png"))
+        return EXIT_FAILURE;
+    if (!Sky.loadFromFile("img//BlueSkyTile.png"))
+        return EXIT_FAILURE;
+    if (!Brow.loadFromFile("img//BrowTile.png"))
+        return EXIT_FAILURE;
+    if (!Kust.loadFromFile("img//KustTile.png"))
+        return EXIT_FAILURE;
+    if (!Stone.loadFromFile("img//StoneTile.png"))
+        return EXIT_FAILURE;
+   
   
     
 
     sf::Clock clock;
 
     sf::RectangleShape rectangle;
+    rectangle.setSize(sf::Vector2f(32, 32));
  
     while (window.isOpen())
     {
@@ -55,6 +77,7 @@ int main()
         time /= 800;
        
         sf::Event event;
+       
         while (window.pollEvent(event))
         {
             
@@ -86,20 +109,25 @@ int main()
 
         window.clear(sf::Color::White);
 
-        for(int i = 0; i < H; i++)
-            for(int j = 0; j < W; j++)
+        for (int i = 0; i < H; i++)
+        {
+            for (int j = 0; j < W; j++)
             {
-                
-                if (TileMap[i][j] == 'B') rectangle.setFillColor(sf::Color::Black);
-                if (TileMap[i][j] == ' ') continue;
+                if (TileMap[i][j] == 'K') rectangle.setTexture(&Kust);
+                if (TileMap[i][j] == 'S') rectangle.setTexture(&Stone);
+                if (TileMap[i][j] == 'B') rectangle.setTexture(&Brow);
+                if (TileMap[i][j] == 'G') rectangle.setTexture(&Green);
+                if (TileMap[i][j] == ' ') rectangle.setTexture(&Sky);
                 rectangle.setPosition(j * 32, i * 32);
                 window.draw(rectangle);
-                //std::cout << "TileMap[" << i << "][" << j << "] = " << TileMap[i][j] << std::endl;
-                
             }
+        }
+        
        
         Player.update(time);
         Player.draw(window);
+
+      
         
         window.display();
         

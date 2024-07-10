@@ -76,7 +76,11 @@ void Pers::update(float time)
 	if (STATE == State::jump) anim.set("jump");
 	if (STATE == State::duck) anim.set("duck");
 
-	if (shoot) { anim.set("shoot"); }
+	if (shoot) 
+	{ 
+		anim.set("shoot"); 
+		if (STATE == State::walk) anim.set("shootrun");
+	}
 
 	if(dir) anim.flip(true);
 	else anim.flip(false);
