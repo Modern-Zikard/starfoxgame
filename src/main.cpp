@@ -4,7 +4,7 @@
 #include <iostream>
 
 
-const int H = 12;
+const int H = 20;
 const int W = 40;
 
 std::string TileMap[H] = {
@@ -13,12 +13,20 @@ std::string TileMap[H] = {
  "B                                      S",
  "B                                      S",
  "B                                      S",
- "B                         SSSSSSSSSSSSSS",
+ "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
  "B                                      B",
  "BBBBBBB                                B",
- "B                     KKKK             B",
- "B                  GGGGGGGGG           B",
- "B                 GBBBBBBBBBGG         B",
+ "B                                      S",
+ "B                                      S",
+ "B                                      S",
+ "B                                      S",
+ "B                       SSSSSSSSSSSSSSSS",
+ "B                       SSSSSSSSSSSSSSSS",
+ "B                       SSSSS   SSSSS  B",
+ "BBBBBBB                  SSS     SSS   B",
+ "B                     KKKKSS     SSS   B",
+ "B                  GGGGGGGGG      S    B",
+ "B                 GBBBBBBBBBGG    S    B",
  "BGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGB"
 };
 
@@ -29,7 +37,7 @@ int main()
 {
     
  
-    sf::RenderWindow window(sf::VideoMode(640, 480), "Game!");
+    sf::RenderWindow window(sf::VideoMode(1280, 640), "Game!");
 
     sf::Texture q;
 
@@ -40,12 +48,8 @@ int main()
     sf::Texture Stone;
 
     AnimManager anim;
-    anim.create("walk", q, 0, 0, 42, 44, 6, 0.005, 42);
-    anim.create("stay", q, 0, 44, 42, 48, 1, 0.005, 42);
-    anim.create("shoot", q, 0, 92, 60, 48, 5, 0.006, 60);
-    anim.create("duck", q, 0, 218, 44, 49, 1, 0.003, 44);
-    anim.create("shootrun", q, 0, 267, 59, 44, 6, 0.005, 59);
-    Pers Player(anim);
+    
+    Pers Player(anim, q);
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
@@ -136,110 +140,3 @@ int main()
     return EXIT_SUCCESS;
 }
 
-//
-//
-//
-//AnimManager anim;
-//
-//float ax;
-//float ay;
-//
-//float tx;
-//float ty;
-//
-//
-//bool toLeft = true;
-//
-//
-//anim.create("run", q, 0, 0, 42, 44, 6, 0.005, 42);
-//anim.create("stay", q, 0, 44, 42, 48, 1, 0.005, 42);
-//anim.create("shoot", q, 0, 92, 48, 48, 2, 0.003, 48);
-//anim.create("duck", q, 0, 218, 44, 49, 1, 0.003, 44);
-//
-//AnimManager tail;
-//
-//tail.create("wobble", q, 0, 194, 20, 23, 4, 0.004, 20);
-//
-//ax = 50;
-//ay = 50;
-//
-//
-//anim.set("stay");
-//
-//
-//
-//
-//tail.set("wobble");
-//
-//anim.flip(toLeft);
-//tail.flip(anim.getAnimFlip());
-//
-//
-//
-///* if (!anim.getAnimFlip())tail.draw(window, ax - 1, ay + 6);
-// else tail.draw(window, ax + 20, ay + 6);*/
-//
-//tail.draw(window, tx, ty);
-//
-//anim.draw(window, ax, ay);
-//
-//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left) || sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-//{
-//    anim.set("run");
-//
-//    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-//    {
-//        toLeft = true;
-//        ax -= 0.08 * time;
-//        anim.flip(true);
-//
-//    }
-//
-//    else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-//    {
-//        /*tx = ax - 1;
-//        ty = ay + 6;*/
-//
-//        toLeft = false;
-//        ax += 0.08 * time;
-//        anim.flip(false);
-//    }
-//}
-//if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl))
-//{
-//    ty = ay + 10;
-//    anim.set("duck");
-//}
-//
-//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-//{
-//    anim.set("shoot");
-//}
-//
-///*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Scan::Up))
-//{
-//    if (p.getOnGr()) { p.setDY(-0.4); p.setOnGr(false); }
-//
-//}*/
-//if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
-//{
-//    // quit...
-//    return EXIT_SUCCESS;
-//
-//}
-//
-///*
-//
-//  */
-//if (anim.getAnimFlip())
-//{
-//    tx = ax + 20;
-//    ty = ay + 6;
-//}
-//else
-//{
-//    ty = ay + 6;
-//    tx = ax - 1;
-//}
-//tail.tick(time);
-//anim.tick(time);

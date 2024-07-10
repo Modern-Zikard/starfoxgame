@@ -5,11 +5,18 @@
 
 #include <iostream>
 
-Pers::Pers(AnimManager &a)
+Pers::Pers(AnimManager &a, sf::Texture &t)
 {
 	x = 0;
 	y = 0;
+
 	anim = a;
+	anim.create("walk", t, 0, 0, 42, 44, 6, 0.005, 42);
+	anim.create("stay", t, 0, 44, 42, 48, 1, 0.005, 42);
+	anim.create("shoot", t, 0, 92, 60, 48, 5, 0.006, 60);
+	anim.create("duck", t, 0, 218, 44, 49, 1, 0.003, 44);
+	anim.create("shootrun", t, 0, 267, 59, 44, 6, 0.005, 59);
+	
 	STATE = State::stay;
 }
 

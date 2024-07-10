@@ -34,7 +34,7 @@ public:
 	enum class State : unsigned int { stay, walk, jump, duck, swim, climb } STATE;
 	std::map<std::string, bool> key;
 
-	Pers(AnimManager &a);
+	Pers(AnimManager &a, sf::Texture &t);
 	void KeyCheck();
 	void update(float time);
 	void draw(sf::RenderWindow &window);
