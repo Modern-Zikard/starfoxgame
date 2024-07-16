@@ -14,12 +14,12 @@ std::string TileMap[H] = {
  "B                                      S",
  "B                                      S",
  "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
- "B                                      B",
- "BBBBBBB                                B",
- "B                                      S",
- "B                                      S",
- "B                                      S",
- "B                                      S",
+ "B                              SSSSSSS B",
+ "BBBBBBB                         SSSSS  B",
+ "B                                SSS   S",
+ "B                                SSS   S",
+ "B                                 S    S",
+ "B                                 S    S",
  "B                       SSSSSSSSSSSSSSSS",
  "B                       SSSSSSSSSSSSSSSS",
  "B                       SSSSS   SSSSS  B",
@@ -33,10 +33,43 @@ std::string TileMap[H] = {
 
 
 
+
+
+
+ 
+
+
+
+
+
 int main()
 {
+    std::vector <std::string> TileMap;
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                              SSSSSSS S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                       SSSSSSSSSSSSSSSS");
+    TileMap.push_back("S                       SSSSS   SSSSS  S");
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSS     SSS   S");
+    TileMap.push_back("S                     SSSSSS     SSS   S");
+    TileMap.push_back("S                  SSSSSSSSS      S    S");
+    TileMap.push_back("S                 SSSSSSSSSSSS    S    S");
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+
+
+
     
- 
+    
     sf::RenderWindow window(sf::VideoMode(1280, 640), "Game!");
 
     sf::Texture q;
@@ -64,7 +97,7 @@ int main()
     if (!Stone.loadFromFile("img//StoneTile.png"))
         return EXIT_FAILURE;
    
-  
+    
     
 
     sf::Clock clock;
@@ -89,7 +122,7 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
         }
-      
+       
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Player.key["Down"] = true;
       
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))    Player.key["Space"] = true;
@@ -109,12 +142,13 @@ int main()
         }
         
         
-        
+       
 
         window.clear(sf::Color::White);
 
         for (int i = 0; i < H; i++)
         {
+            
             for (int j = 0; j < W; j++)
             {
                 if (TileMap[i][j] == 'K') rectangle.setTexture(&Kust);
@@ -124,11 +158,13 @@ int main()
                 if (TileMap[i][j] == ' ') rectangle.setTexture(&Sky);
                 rectangle.setPosition(j * 32, i * 32);
                 window.draw(rectangle);
+                
             }
         }
-        
+      
        
-        Player.update(time);
+        Player.update(time, 32, TileMap);
+        
         Player.draw(window);
 
       

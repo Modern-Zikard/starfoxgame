@@ -6,7 +6,7 @@
 #include "ClassAnimationManager.h"
 
 
-#define GROUND 200
+//#define GROUND 200
 
 
 
@@ -21,7 +21,8 @@ private:
 	float dy = 0;
 	float x;
 	float y;
-
+	float width = 40;
+	float height = 45;
 
 	bool dir = false;
 	bool shoot = false;
@@ -36,7 +37,9 @@ public:
 
 	Pers(AnimManager &a, sf::Texture &t);
 	void KeyCheck();
-	void update(float time);
+	void Collision(int dir, float TileSize, std::vector <std::string> TileMap);
+	void update(float time, float TileSize, std::vector <std::string> TileMap);
 	void draw(sf::RenderWindow &window);
+	
 };
 
