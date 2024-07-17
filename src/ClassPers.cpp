@@ -173,3 +173,8 @@ void Pers::draw(sf::RenderWindow &window)
 {
 	anim.draw(window, x, y);
 }
+
+void Pers::AiFunck(float speed)
+{
+	dx = speed;
+}

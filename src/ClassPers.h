@@ -40,6 +40,7 @@ public:
 	void Collision(int dir, float TileSize, std::vector <std::string> TileMap);
 	void update(float time, float TileSize, std::vector <std::string> TileMap);
 	void draw(sf::RenderWindow &window);
+	void AiFunck(float speed);
 	
 };
 

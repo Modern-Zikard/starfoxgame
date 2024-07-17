@@ -56,10 +56,10 @@ int main()
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
+    TileMap.push_back("S                               KKKKKKKS");
     TileMap.push_back("S                       SSSSSSSSSSSSSSSS");
     TileMap.push_back("S                       SSSSS   SSSSS  S");
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSS     SSS   S");
+    TileMap.push_back("SSSSSSSSS    SSSSSSSSSSSSSSS     SSS   S");
     TileMap.push_back("S                     SSSSSS     SSS   S");
     TileMap.push_back("S                  SSSSSSSSS      S    S");
     TileMap.push_back("S                 SSSSSSSSSSSS    S    S");
@@ -83,6 +83,8 @@ int main()
     AnimManager anim;
     
     Pers Player(anim, q);
+    Pers Player1(anim, q);
+    Pers Player2(anim, q);
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
@@ -162,9 +164,8 @@ int main()
             }
         }
       
-       
+
         Player.update(time, 32, TileMap);
-        
         Player.draw(window);
 
       
