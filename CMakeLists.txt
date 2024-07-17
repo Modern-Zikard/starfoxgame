@@ -18,8 +18,16 @@ src/ClassPers.cpp
 src/ClassPers.h 
 src/ClassAnimationManager.cpp
 src/ClassAnimationManager.h
+src/Bullet.h
+src/Bullet.cpp
 img/SpriteList.png
 )
+
+FILE(
+    COPY "${CMAKE_CURRENT_SOURCE_DIR}/img"
+    DESTINATION "${CMAKE_CURRENT_BINARY_DIR}"
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE sfml-graphics)
 target_compile_features(${PROJECT_NAME} PRIVATE cxx_std_17)
 
