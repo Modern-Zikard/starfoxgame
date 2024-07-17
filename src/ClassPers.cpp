@@ -27,6 +27,7 @@ void Pers::KeyCheck()
 	if (key["Left"])
 	{
 		dir = true;
+		
 		if (STATE != State::duck) dx = -0.1;
 		if (STATE == State::stay) STATE = State::walk;
 	}
@@ -102,7 +103,7 @@ void Pers::Collision(int dir, float TileSize, std::vector <std::string> TileMap)
 
 void Pers::update(float time, float TileSize, std::vector <std::string> TileMap)
 {
-	std::cout << " Point 1 " << std::endl;
+	STATE = State::stay;
 	
 	KeyCheck();
 	
@@ -117,7 +118,7 @@ void Pers::update(float time, float TileSize, std::vector <std::string> TileMap)
 		}
 		if ((STATE == State::jump )||(dy!= 0)) {
 			anim.set("jump");
-			std::cout << " jump " << std::endl;
+			
 			/*width = 40; height = 54;*/
 		}
 		if (STATE == State::duck) {
@@ -138,7 +139,7 @@ void Pers::update(float time, float TileSize, std::vector <std::string> TileMap)
 			/*width = 59; height = 44;*/
 		}
 	}
-	std::cout << " Point 4 " << std::endl;
+	
 	
 	if(dir) anim.flip(true);
 	
@@ -166,7 +167,7 @@ void Pers::update(float time, float TileSize, std::vector <std::string> TileMap)
 	key["Up"] = false;
 	key["Down"] = false;
 	key["Space"] = false;
-	
+	std::cout << "dy = " << dy << std::endl;
 }
 void Pers::draw(sf::RenderWindow &window)
 {

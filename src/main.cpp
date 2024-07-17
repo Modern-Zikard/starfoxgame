@@ -45,7 +45,7 @@ std::string TileMap[H] = {
 int main()
 {
     std::vector <std::string> TileMap;
-    TileMap.push_back("S                                      S");
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
