@@ -21,7 +21,7 @@ private:
 	float dy = 0;
 	float x;
 	float y;
-	float width = 40;
+	float width = 32;
 	float height = 45;
 
 	bool dir = false;
@@ -41,6 +41,11 @@ public:
 	void update(float time, float TileSize, std::vector <std::string> TileMap);
 	void draw(sf::RenderWindow &window);
 	void AiFunck(float speed);
+
+	float getX();
+	float getY();
+
+	bool getDir();
 	
 };
 

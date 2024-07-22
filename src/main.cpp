@@ -1,7 +1,9 @@
 
 #include "ClassAnimationManager.h"
 #include "ClassPers.h"
+#include "Bullet.h"
 #include <iostream>
+#include <list>
 
 
 const int H = 20;
@@ -74,17 +76,34 @@ int main()
 
     sf::Texture q;
 
+    
+
     sf::Texture Green;
     sf::Texture Brow;
     sf::Texture Kust;
     sf::Texture Sky;
     sf::Texture Stone;
 
-    AnimManager anim;
+    AnimManager Fox;
     
-    Pers Player(anim, q);
-    Pers Player1(anim, q);
-    Pers Player2(anim, q);
+
+    Fox.create("walk", q, 0, 0, 42, 44, 6, 0.005, 42);
+    Fox.create("stay", q, 0, 44, 42, 48, 1, 0.005, 42);
+    Fox.create("shoot", q, 0, 92, 60, 48, 5, 0.006, 60);
+    Fox.create("duck", q, 0, 218, 44, 49, 1, 0.003, 44);
+    Fox.create("shootrun", q, 0, 267, 59, 44, 6, 0.006, 59);
+    Fox.create("jump", q, 0, 140, 40, 54, 1, 0.005, 40);
+
+    AnimManager Shoot;
+
+    Shoot.create("move", q, 0, 318, 6, 6, 3, 0.005, 6);
+    Shoot.create("explode", q, 0, 325, 7, 10, 3, 0.0001, 7);
+    
+    Pers Player(Fox, q);
+    
+
+    std::list<Bullet*> bullets;
+    std::list<Bullet*>::iterator it; 
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
@@ -123,11 +142,17 @@ int main()
            
             if (event.type == sf::Event::Closed)
                 window.close();
+            if(event.type == sf::Event::KeyPressed)
+                if(event.key.code == sf::Keyboard::Space)
+                    bullets.push_back(new Bullet(Shoot, Player.getX()+54, Player.getY()+10, Player.getDir()));
         }
        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Player.key["Down"] = true;
       
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))    Player.key["Space"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
+            Player.key["Space"] = true;
+            
+         
      
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))     Player.key["Left"] = true;
       
@@ -163,10 +188,32 @@ int main()
                 
             }
         }
-      
+
+        for (it = bullets.begin(); it != bullets.end();)
+        {
+            Bullet* b = *it;
+            if (b->getLife() == false)
+            {
+                it = bullets.erase(it);
+                delete b;
+            }
+            else it++;
+        }
+        
+        for (it = bullets.begin(); it != bullets.end(); it++)
+        {
+            (*it)->update(time, TileMap);
+            (*it)->draw(window);
+
+        }
+            
+       
 
         Player.update(time, 32, TileMap);
+       
         Player.draw(window);
+        
+        
 
       
         
