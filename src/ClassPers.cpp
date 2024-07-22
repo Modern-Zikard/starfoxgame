@@ -35,7 +35,8 @@ void Pers::KeyCheck()
 	if (key["Up"])
 	{
 		if (STATE == State::stay || STATE == State::walk) { dy = -0.27; STATE = State::jump; }
-		if (STATE == State::swim || STATE == State::climb) dy = -0.05;
+		/*if (STATE == State::swim || STATE == State::climb) dy = -0.05;*/
+		
 	}
 	if (key["Down"])
 	{
@@ -162,7 +163,7 @@ void Pers::update(float time, float TileSize, std::vector <std::string> TileMap)
 	key["Up"] = false;
 	key["Down"] = false;
 	key["Space"] = false;
-	
+	//std::cout << "dy = " << dy << std::endl;
 }
 void Pers::draw(sf::RenderWindow &window)
 {
