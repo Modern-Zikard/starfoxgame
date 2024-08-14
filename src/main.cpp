@@ -1,8 +1,8 @@
 
 #include "ClassAnimationManager.h"
 #include "ClassPers.h"
-#include "Bullet.h"
 #include "Entity.h"
+#include "Bullet.h"
 #include <iostream>
 #include <list>
 
@@ -100,7 +100,7 @@ int main()
     Shoot.create("move", q, 0, 318, 6, 6, 3, 0.005, 6);
     Shoot.create("explode", q, 0, 325, 7, 10, 3, 0.0001, 7);
     
-    Pers Player(Fox, q);
+    Player Krystal(Fox, q);
     
 
     std::list<Entity*> entities;
@@ -145,21 +145,21 @@ int main()
                 window.close();
             if(event.type == sf::Event::KeyPressed)
                 if(event.key.code == sf::Keyboard::Space)
-                    entities.push_back(new Bull(Shoot, Player.getX()+54, Player.getY()+10, Player.getDir()));
+                    entities.push_back(new Bullet(Shoot, Krystal.getX()+54, Krystal.getY()+10, Krystal.getDir()));
         }
        
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Player.key["Down"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Krystal.key["Down"] = true;
       
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-            Player.key["Space"] = true;
+            Krystal.key["Space"] = true;
             
          
      
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))     Player.key["Left"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))     Krystal.key["Left"] = true;
       
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))    Player.key["Right"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))    Krystal.key["Right"] = true;
       
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))       Player.key["Up"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))       Krystal.key["Up"] = true;
        
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
@@ -203,17 +203,17 @@ int main()
         
         for (it = entities.begin(); it != entities.end(); it++)
         {
-            (*it)->update(time, TileMap);
+            (*it)->update(time,32, TileMap);
             (*it)->draw(window);
 
         }
             
        
 
-        Player.update(time, 32, TileMap);
+        Krystal.update(time,32, TileMap);
        
-        Player.draw(window);
-        
+        Krystal.draw(window);
+        std::cout << "Player X = " << Krystal.getX() << ", Y = " << Krystal.getY()<< std::endl;
         
 
       
