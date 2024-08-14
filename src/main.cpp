@@ -2,6 +2,7 @@
 #include "ClassAnimationManager.h"
 #include "ClassPers.h"
 #include "Bullet.h"
+#include "Entity.h"
 #include <iostream>
 #include <list>
 
@@ -102,8 +103,8 @@ int main()
     Pers Player(Fox, q);
     
 
-    std::list<Bullet*> bullets;
-    std::list<Bullet*>::iterator it; 
+    std::list<Entity*> entities;
+    std::list<Entity*>::iterator it;
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
@@ -144,7 +145,7 @@ int main()
                 window.close();
             if(event.type == sf::Event::KeyPressed)
                 if(event.key.code == sf::Keyboard::Space)
-                    bullets.push_back(new Bullet(Shoot, Player.getX()+54, Player.getY()+10, Player.getDir()));
+                    entities.push_back(new Bull(Shoot, Player.getX()+54, Player.getY()+10, Player.getDir()));
         }
        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Player.key["Down"] = true;
@@ -189,18 +190,18 @@ int main()
             }
         }
 
-        for (it = bullets.begin(); it != bullets.end();)
+        for (it = entities.begin(); it != entities.end();)
         {
-            Bullet* b = *it;
+            Entity* b = *it;
             if (b->getLife() == false)
             {
-                it = bullets.erase(it);
+                it = entities.erase(it);
                 delete b;
             }
             else it++;
         }
         
-        for (it = bullets.begin(); it != bullets.end(); it++)
+        for (it = entities.begin(); it != entities.end(); it++)
         {
             (*it)->update(time, TileMap);
             (*it)->draw(window);

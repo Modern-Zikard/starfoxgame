@@ -11,7 +11,7 @@ public:
 	Entity(){}
 	Entity(AnimManager& a, int x, int y);
 
-	virtual void update(float time) = 0;
+	virtual void update(float time, std::vector <std::string> TileMap) = 0;
 	void draw(sf::RenderWindow& window);
 	bool getLife();
 
