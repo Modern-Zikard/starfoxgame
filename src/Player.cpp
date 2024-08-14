@@ -96,7 +96,7 @@ void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMa
 
 void Player::update(float time, float TileSize, std::vector <std::string> TileMap)
 {
-
+	
 	STATE = State::stay;
 
 	KeyCheck();
@@ -162,12 +162,6 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 	key["Down"] = false;
 	key["Space"] = false;
 	//std::cout << "dy = " << dy << std::endl;
-}
-
-
-void Player::AiFunck(float speed)
-{
-	dx = speed;
 }
 
 float Player::getX()

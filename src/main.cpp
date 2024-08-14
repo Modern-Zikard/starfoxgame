@@ -2,6 +2,7 @@
 #include "ClassAnimationManager.h"
 #include "Player.h"
 #include "Entity.h"
+#include "Enemy.h"
 #include "Bullet.h"
 #include <iostream>
 #include <list>
@@ -105,6 +106,10 @@ int main()
 
     std::list<Entity*> entities;
     std::list<Entity*>::iterator it;
+
+    entities.push_back(new Enemy(Fox, 780, 339));
+    entities.push_back(new Enemy(Fox, 50, 300));
+    entities.push_back(new Enemy(Fox, 1200, 300));
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
