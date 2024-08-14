@@ -4,8 +4,8 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 {
 	x += dx * time;
 
-	for (int i = y / 32; i < (y + h) / 32; i++)
-		for (int j = x / 32; j < (x + w) / 32; j++)
+	for (int i = y / TileSize; i < (y + h) / TileSize; i++)
+		for (int j = x / TileSize; j < (x + w) / TileSize; j++)
 			if (TileMap[i][j] == 'S')
 			{
 
@@ -17,7 +17,7 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 	anim.tick(time);
 }
 
-Bullet::Bullet(AnimManager a, float x, float y, bool dir)
+Bullet::Bullet(AnimManager &a, float x, float y, bool dir)
 {
 	anim = a;
 	anim.set("move");

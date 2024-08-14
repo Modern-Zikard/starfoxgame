@@ -1,6 +1,6 @@
 
 #include "ClassAnimationManager.h"
-#include "ClassPers.h"
+#include "Player.h"
 #include "Entity.h"
 #include "Bullet.h"
 #include <iostream>
@@ -100,7 +100,7 @@ int main()
     Shoot.create("move", q, 0, 318, 6, 6, 3, 0.005, 6);
     Shoot.create("explode", q, 0, 325, 7, 10, 3, 0.0001, 7);
     
-    Player Krystal(Fox, q);
+    Player Krystal(Fox, 100, 100);
     
 
     std::list<Entity*> entities;
@@ -213,7 +213,7 @@ int main()
         Krystal.update(time,32, TileMap);
        
         Krystal.draw(window);
-        std::cout << "Player X = " << Krystal.getX() << ", Y = " << Krystal.getY()<< std::endl;
+        
         
 
       
