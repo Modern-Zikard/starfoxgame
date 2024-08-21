@@ -14,12 +14,18 @@ FetchContent_MakeAvailable(SFML)
 
 add_executable(${PROJECT_NAME} 
 src/main.cpp
-src/ClassPers.cpp
-src/ClassPers.h 
+src/Player.cpp
+src/Player.h 
 src/ClassAnimationManager.cpp
 src/ClassAnimationManager.h
 src/Bullet.h
 src/Bullet.cpp
+src/Entity.cpp 
+src/Entity.h
+src/Enemy.cpp
+src/Enemy.h
+src/tinyxml2.cpp 
+src/tinyxml2.h
 img/SpriteList.png
 )
 
