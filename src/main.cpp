@@ -8,6 +8,9 @@
 #include <list>
 
 
+int WindH = 720;
+int WindW = 1280;
+
 const int H = 20;
 const int W = 40;
 
@@ -33,15 +36,6 @@ std::string TileMap[H] = {
  "B                 GBBBBBBBBBGG    S    B",
  "BGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGB"
 };
-
-
-
-
-
-
-
- 
-
 
 
 
@@ -74,17 +68,17 @@ int main()
 
     
     
-    sf::RenderWindow window(sf::VideoMode(1280, 640), "Game!");
+    sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
+
+    sf::View Player_view;
+    Player_view.reset(sf::FloatRect(0, 0, WindW/2, WindH/2));
 
     sf::Texture q;
 
-    
+    sf::Texture t_tile;
+    sf::Sprite s_tile;
+    s_tile.setTexture(t_tile);
 
-    sf::Texture Green;
-    sf::Texture Brow;
-    sf::Texture Kust;
-    sf::Texture Sky;
-    sf::Texture Stone;
 
     AnimManager Fox;
     
@@ -113,16 +107,9 @@ int main()
  
     if (!q.loadFromFile("img//SpriteList.png"))
         return EXIT_FAILURE;
-    if (!Green.loadFromFile("img//GreenTile1.png"))
+    if (!t_tile.loadFromFile("img//Tiles.png"))
         return EXIT_FAILURE;
-    if (!Sky.loadFromFile("img//BlueSkyTile.png"))
-        return EXIT_FAILURE;
-    if (!Brow.loadFromFile("img//BrowTile.png"))
-        return EXIT_FAILURE;
-    if (!Kust.loadFromFile("img//KustTile.png"))
-        return EXIT_FAILURE;
-    if (!Stone.loadFromFile("img//StoneTile.png"))
-        return EXIT_FAILURE;
+    
    
     
     
@@ -184,13 +171,12 @@ int main()
             
             for (int j = 0; j < W; j++)
             {
-                if (TileMap[i][j] == 'K') rectangle.setTexture(&Kust);
-                if (TileMap[i][j] == 'S') rectangle.setTexture(&Stone);
-                if (TileMap[i][j] == 'B') rectangle.setTexture(&Brow);
-                if (TileMap[i][j] == 'G') rectangle.setTexture(&Green);
-                if (TileMap[i][j] == ' ') rectangle.setTexture(&Sky);
-                rectangle.setPosition(j * 32, i * 32);
-                window.draw(rectangle);
+                if (TileMap[i][j] == 'K') s_tile.setTextureRect(sf::IntRect(32, 0, 32, 32));
+                if (TileMap[i][j] == 'S') s_tile.setTextureRect(sf::IntRect(0, 0, 32, 32));
+                if (TileMap[i][j] == ' ') s_tile.setTextureRect(sf::IntRect(64, 0, 32, 32));
+
+                s_tile.setPosition(j * 32, i * 32);
+                window.draw(s_tile);
                 
             }
         }
@@ -220,7 +206,9 @@ int main()
         Krystal.draw(window);
         
         
+        Player_view.setCenter(Krystal.getX(), Krystal.getY());
 
+        window.setView(Player_view);
       
         
         window.display();
