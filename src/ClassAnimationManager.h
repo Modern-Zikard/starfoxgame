@@ -19,6 +19,8 @@ private:
 	float currentFrame;
 	float Speed;
 public:
+
+	
 	Animation(sf::Texture& t, int x, int y, int w, int h, int count, float speed, int step);
 	Animation() {}
 	
@@ -30,7 +32,8 @@ public:
 	void SetIsPl(bool b);
 	void SetPos(float x, float y);
 
-	
+	int getNumFrame();
+	void setNumFrame(float num);
 
 	bool getFlip();
 	
@@ -44,6 +47,8 @@ private:
 
 public:
 
+	
+
 	AnimManager(){}
 
 	void create(sf::String name, sf::Texture &t, int x, int y,  int w ,int h , int count, float speed, int step);
@@ -53,6 +58,9 @@ public:
 	void tick(float time);
 	void pause();
 	void play();
+	void setNumFrame(float num);
+	
+	int getNumFrame();
 
 	bool getAnimFlip();
 

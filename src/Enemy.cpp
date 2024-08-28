@@ -41,8 +41,7 @@ void Enemy::update(float time, float TileSize, std::vector <std::string> TileMap
 {
 
 	STATE = State::stay;
-	std::cout << "X = " << x << " Y = " << y << std::endl;
-	std::cout << "DX = " << dx << " DY = " << dy << std::endl;
+	
 
 
 	if ((dx == 0)&&(dy == 0)) {
@@ -52,12 +51,11 @@ void Enemy::update(float time, float TileSize, std::vector <std::string> TileMap
 
 	}
 	if ((dx != 0) && (dy == 0)) {
-		std::cout << "Run" << std::endl;
+	
 		STATE = State::walk;
 		anim.set("walk");
 		/*width = 42; height = 44;*/
 	}
-	std::cout << "y/TileSize = " << y / TileSize << ", x / TileSize = " << x / TileSize << std::endl;
 	if((TileMap[y/TileSize+ 1][x/TileSize+ 1]== 'S')|| (TileMap[y / TileSize - 1][x / TileSize - 1] == 'S'))
 	{
 		

@@ -7,13 +7,10 @@
 
 class Entity
 {
-public:
-	Entity(){}
-	Entity(AnimManager &a, float x, float y, bool dir);
+private:
 
-	virtual void update(float time,  float TileSize , std::vector <std::string> TileMap) = 0;
-	void draw(sf::RenderWindow& window);
-	bool getLife();
+	
+public:
 
 	AnimManager anim;
 
@@ -26,6 +23,16 @@ public:
 
 	bool life;
 	bool dir;
+
+
+	Entity(){}
+	Entity(AnimManager &a, float x, float y, bool dir);
+
+	virtual void update(float time,  float TileSize , std::vector <std::string> TileMap) = 0;
+	void draw(sf::RenderWindow& window);
+	bool getLife();
+
+	
 };
 
 

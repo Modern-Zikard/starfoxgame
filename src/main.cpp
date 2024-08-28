@@ -136,8 +136,8 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
             if(event.type == sf::Event::KeyPressed)
-                if(event.key.code == sf::Keyboard::Space)
-                    entities.push_back(new Bullet(Shoot, Krystal.getX()+54, Krystal.getY()+10, Krystal.getDir()));
+                if((event.key.code == sf::Keyboard::Space)/*&&(Krystal.getNumFrame() == 1)*/)
+                    entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+11, Krystal.getDir()));
         }
        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Krystal.key["Down"] = true;
@@ -202,7 +202,9 @@ int main()
        
 
         Krystal.update(time,32, TileMap);
-       
+        
+        
+        /*std::cout << "Frame Num = " << Krystal.getNumFrame() << std::endl;*/
         Krystal.draw(window);
         
         

@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player(AnimManager& a, float x, float y, bool dir)
+Player::Player(AnimManager &a, float x, float y, bool dir)
 {
 	w = 32;
 	h = 45;
@@ -43,6 +43,8 @@ void Player::KeyCheck()
 	if (key["Space"])
 	{
 		shoot = true;
+		//if (dir)x += 15;
+		anim.setNumFrame(0);
 	}
 
 	//////////////Œ“œ”— ¿Õ»≈  À¿¬»ÿ///////////////////
@@ -65,8 +67,9 @@ void Player::KeyCheck()
 	}
 	if (!key["Space"])
 	{
-
-		shoot = false;
+		if(anim.getNumFrame() == 4)
+			shoot = false;
+		//if (dir) x -= 15;
 	}
 }
 
@@ -93,6 +96,8 @@ void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMa
 		}
 
 }
+
+
 
 void Player::update(float time, float TileSize, std::vector <std::string> TileMap)
 {
@@ -161,19 +166,16 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 	key["Up"] = false;
 	key["Down"] = false;
 	key["Space"] = false;
-	//std::cout << "dy = " << dy << std::endl;
+	std::cout << "y = " << y << std::endl;
+	std::cout << "x = " << x << std::endl;
 }
 
-float Player::getX()
-{
-	return this->x;
-}
-float Player::getY()
-{
-	return this->y;
-}
-bool Player::getDir()
-{
-	return this->dir;
-}
+void Player::getNumFrame(float num) { anim.setNumFrame(num); }
+
+int Player::getNumFrame() { return anim.getNumFrame(); }
+
+float Player::getX() { return this->x; }
+float Player::getY() { return this->y; }
+
+bool Player::getDir() { return this->dir; }
 
