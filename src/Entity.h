@@ -7,11 +7,7 @@
 
 class Entity
 {
-private:
-
-	
-public:
-
+protected:
 	AnimManager anim;
 
 	float dx = 0;
@@ -23,6 +19,8 @@ public:
 
 	bool life;
 	bool dir;
+	
+public:
 
 
 	Entity(){}

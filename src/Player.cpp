@@ -2,8 +2,8 @@
 
 Player::Player(AnimManager &a, float x, float y, bool dir)
 {
-	w = 32;
-	h = 45;
+	w = 60;
+	h = 52;
 	this->x = x;
 	this->y = y;
 
@@ -75,32 +75,41 @@ void Player::KeyCheck()
 
 void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMap)
 {
+	
+	sx = x + 18;
+	sy = y + 10;
 
-
-
-	for (int i = y / TileSize; i < (y + h) / TileSize; i++)
-		for (int j = x / TileSize; j < (x + w) / TileSize; j++)
+	for (int i = sy / TileSize; i < (sy + sh) / TileSize; i++)
+		for (int j = sx / TileSize; j < (sx + sw) / TileSize; j++)
 		{
-
+			
+			/*std::cout << "Collision check - TileMap[" << i << "][" << j << "]" << std::endl;*/
 			if (TileMap[i][j] == 'S')
 			{
-				if ((dx > 0) && (dir == 0)) x = j * TileSize - w;
-				if ((dx < 0) && (dir == 0)) x = j * TileSize + TileSize;
+				
+				if ((dx > 0) && (dir == 0)) sx = j * TileSize - sw;
+				if ((dx < 0) && (dir == 0)) sx = j * TileSize + TileSize;
 
-				if ((dy > 0) && (dir == 1)) { y = i * TileSize - h; dy = 0; onGround = true; }
-				if ((dy < 0) && (dir == 1)) { y = i * TileSize + TileSize; dy = 0; }
+				
 
+				if ((dy > 0) && (dir == 1)) { sy = i * TileSize - sh; dy = 0; /*onGround = true;*/ }
+				if ((dy < 0) && (dir == 1)) { sy = i * TileSize + TileSize; dy = 0; }
+
+				
 
 			}
+			x = sx - 18;
+			y = sy - 10; 
 
 		}
-
+	
 }
 
 
 
 void Player::update(float time, float TileSize, std::vector <std::string> TileMap)
 {
+	
 	
 	STATE = State::stay;
 
@@ -139,7 +148,7 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 		}
 	}
 
-
+	std::cout << "sx = " << sx << ", sy = " << sy << std::endl; 
 	if (dir) anim.flip(true);
 
 	else anim.flip(false);
@@ -166,8 +175,7 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 	key["Up"] = false;
 	key["Down"] = false;
 	key["Space"] = false;
-	std::cout << "y = " << y << std::endl;
-	std::cout << "x = " << x << std::endl;
+	
 }
 
 void Player::getNumFrame(float num) { anim.setNumFrame(num); }

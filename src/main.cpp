@@ -11,38 +11,38 @@
 int WindH = 720;
 int WindW = 1280;
 
-const int H = 20;
-const int W = 40;
+const int H = 8;
+const int W = 8;
 
-std::string TileMap[H] = {
- "B                                      S",
- "B                                      S",
- "B                                      S",
- "B                                      S",
- "B                                      S",
- "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
- "B                              SSSSSSS B",
- "BBBBBBB                         SSSSS  B",
- "B                                SSS   S",
- "B                                SSS   S",
- "B                                 S    S",
- "B                                 S    S",
- "B                       SSSSSSSSSSSSSSSS",
- "B                       SSSSSSSSSSSSSSSS",
- "B                       SSSSS   SSSSS  B",
- "BBBBBBB                  SSS     SSS   B",
- "B                     KKKKSS     SSS   B",
- "B                  GGGGGGGGG      S    B",
- "B                 GBBBBBBBBBGG    S    B",
- "BGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGB"
-};
+//std::string TileMap[H] = {
+// "B                                      S",
+// "B                                      S",
+// "B                                      S",
+// "B                                      S",
+// "B                                      S",
+// "SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS",
+// "B                              SSSSSSS B",
+// "BBBBBBB                         SSSSS  B",
+// "B                                SSS   S",
+// "B                                SSS   S",
+// "B                                 S    S",
+// "B                                 S    S",
+// "B                       SSSSSSSSSSSSSSSS",
+// "B                       SSSSSSSSSSSSSSSS",
+// "B                       SSSSS   SSSSS  B",
+// "BBBBBBB                  SSS     SSS   B",
+// "B                     KKKKSS     SSS   B",
+// "B                  GGGGGGGGG      S    B",
+// "B                 GBBBBBBBBBGG    S    B",
+// "BGGGGGGGGGGGGGGGGGBBBBBBBBBBBBGGGGGGGGGB"
+//};
 
 
 
 
 int main()
 {
-    std::vector <std::string> TileMap;
+    /*std::vector <std::string> TileMap;
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
@@ -62,7 +62,22 @@ int main()
     TileMap.push_back("S                  SSSSSSSSS      S    S");
     TileMap.push_back("S                 SSSSSSSSSSSS    S    S");
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");*/
+
+    std::vector <std::string> TileMap;
+    TileMap.push_back("SSSSSSSS");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("SSSSSSSS");
+    
+   /* for (int i = 0; i < H; i++)
+        for (int j = 0; j < W; j++)
+            std::cout << "TileMap[" << i << "][" << j << "] = " << TileMap[i][j] << std::endl;*/
+    
 
 
 
@@ -83,12 +98,12 @@ int main()
     AnimManager Fox;
     
 
-    Fox.create("walk", q, 0, 0, 42, 44, 6, 0.005, 42);
-    Fox.create("stay", q, 0, 44, 42, 48, 1, 0.005, 42);
-    Fox.create("shoot", q, 0, 92, 60, 48, 5, 0.006, 60);
+    Fox.create("walk", q, 0, 0, 60, 54, 6, 0.005, 60);
+    Fox.create("stay", q, 0, 486, 60, 54, 1, 0.005, 60);
+    Fox.create("shoot", q, 0, 108, 60, 54, 5, 0.006, 60);
     Fox.create("duck", q, 0, 218, 44, 49, 1, 0.003, 44);
-    Fox.create("shootrun", q, 0, 267, 59, 44, 6, 0.006, 59);
-    Fox.create("jump", q, 0, 140, 40, 54, 1, 0.005, 40);
+    Fox.create("shootrun", q, 0, 216, 60, 54, 6, 0.006, 60);
+    Fox.create("jump", q, 0, 432, 60, 54, 1, 0.005, 60);
 
     AnimManager Shoot;
 
@@ -101,11 +116,11 @@ int main()
     std::list<Entity*> entities;
     std::list<Entity*>::iterator it;
 
-    entities.push_back(new Enemy(Fox, 780, 339));
-    entities.push_back(new Enemy(Fox, 50, 300));
-    entities.push_back(new Enemy(Fox, 1200, 300));
+   /* entities.push_back(new Enemy(Fox, 780, 339));*/
+    entities.push_back(new Enemy(Fox, 100, 50));
+    /*entities.push_back(new Enemy(Fox, 1200, 300));*/
  
-    if (!q.loadFromFile("img//SpriteList.png"))
+    if (!q.loadFromFile("img//FoxSpriteList.png"))
         return EXIT_FAILURE;
     if (!t_tile.loadFromFile("img//Tiles.png"))
         return EXIT_FAILURE;

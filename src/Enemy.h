@@ -9,6 +9,10 @@ private:
 	bool hit = false;
 	bool duck = false;
 	bool onGround = true;
+	float sx;
+	float sy;
+	float sw = 24;
+	float sh = 42;
 public:
 
 

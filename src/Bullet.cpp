@@ -23,8 +23,8 @@ Bullet::Bullet(AnimManager &a, float x, float y, bool dir)
 	anim.set("move");
 	this->x = x;
 	this->y = y;
-	dx = 0.5;
-	if (dir == 1) dx = -0.5;
+	dx = 0.2;
+	if (dir == 1) dx = -0.2;
 	w = h = 15;
 	life = true;
 }
