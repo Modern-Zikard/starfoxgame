@@ -2,7 +2,7 @@
 
 class Player : public Entity
 {
-private:
+protected:
 	bool shoot = false;
 	bool hit = false;
 	bool duck = false;
@@ -14,10 +14,12 @@ private:
 
 public:
 
+	Player(){}
+	Player(AnimManager &a, float x, float y, bool dir = 0);
 
 	enum class State : unsigned int { stay, walk, jump, duck, swim, climb } STATE;
 	std::map<std::string, bool> key;
-	Player(AnimManager &a, float x, float y, bool dir = 0);
+	
 	void KeyCheck();
 	void update(float time, float TileSize, std::vector <std::string> TileMap);
 	void Collision(int dir, float TileSize, std::vector <std::string> TileMap);
@@ -25,11 +27,17 @@ public:
 
 	int getNumFrame();
 	
-	float getX();
-	float getY();
+	
 
 	bool getDir();
 
 };
 
 
+//class Enemies : public Player
+//{
+//public:
+//
+//	Enemies(AnimManager &a, float x = 100, float y = 100, bool dir = 0);
+//	void update(float time, float TileSize, std::vector <std::string> TileMap);
+//};

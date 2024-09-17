@@ -30,6 +30,9 @@ public:
 	void draw(sf::RenderWindow& window);
 	bool getLife();
 
+	float getX();
+	float getY();
+
 	
 };
 

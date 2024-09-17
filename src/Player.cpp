@@ -182,8 +182,18 @@ void Player::getNumFrame(float num) { anim.setNumFrame(num); }
 
 int Player::getNumFrame() { return anim.getNumFrame(); }
 
-float Player::getX() { return this->x; }
-float Player::getY() { return this->y; }
-
 bool Player::getDir() { return this->dir; }
 
+//Enemies::Enemies(AnimManager &a, float x, float y, bool dir)
+//{
+//	w = 60;
+//	h = 52;
+//	dx = 0.1;
+//	this->x = x;
+//	this->y = y;
+//
+//	anim = a;
+//
+//	this->dir = dir;
+//	STATE = State::stay;
+//}

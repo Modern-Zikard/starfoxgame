@@ -21,5 +21,8 @@ bool Entity::getLife()
 	return this->life;
 }
 
+float Entity::getX() { return this->x; }
+float Entity::getY() { return this->y; }
+
 
 
