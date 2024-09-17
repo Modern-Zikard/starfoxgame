@@ -4,13 +4,11 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-
 class Animation
 {
 private:
 	std::vector <sf::IntRect> frames;
 	std::vector <sf::IntRect> frames_flip;
-
 	sf::Sprite sprite;
 
 	bool flip;
@@ -19,24 +17,18 @@ private:
 	float currentFrame;
 	float Speed;
 public:
-
-	
 	Animation(sf::Texture& t, int x, int y, int w, int h, int count, float speed, int step);
 	Animation() {}
-	
-
-	void tick(float time); 
 
 	sf::Sprite GetSprite();
+	
+	void tick(float time); 
 	void SetFlip(bool b);
 	void SetIsPl(bool b);
 	void SetPos(float x, float y);
-
-	int getNumFrame();
 	void setNumFrame(float num);
-
+	int getNumFrame();
 	bool getFlip();
-	
 };
 
 class AnimManager
@@ -44,11 +36,7 @@ class AnimManager
 private:
 	sf::String currentAnim;
 	std::map<sf::String, Animation> animlist;
-
 public:
-
-	
-
 	AnimManager(){}
 
 	void create(sf::String name, sf::Texture &t, int x, int y,  int w ,int h , int count, float speed, int step);
@@ -59,9 +47,6 @@ public:
 	void pause();
 	void play();
 	void setNumFrame(float num);
-	
 	int getNumFrame();
-
 	bool getAnimFlip();
-
 };

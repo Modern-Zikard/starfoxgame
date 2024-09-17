@@ -6,7 +6,6 @@ Animation::Animation(sf::Texture &t, int x, int y,  int w, int h, int count, flo
 {
 	Speed = speed;
 	sprite.setTexture(t);
-	
 	currentFrame = 0;
 	isPlaying = true;
 	flip = false;
@@ -22,11 +21,9 @@ Animation::Animation(sf::Texture &t, int x, int y,  int w, int h, int count, flo
 void Animation::tick(float time)
 {
 	if (!isPlaying) return;
-
 	currentFrame += Speed * time;
 	if (currentFrame > frames.size())
 		currentFrame -= frames.size();
-	
 	int i = currentFrame;
 
 	if(!flip) sprite.setTextureRect(frames[i]);
@@ -63,9 +60,5 @@ void AnimManager::tick(float time) { animlist[currentAnim].tick(time); }
 void AnimManager::pause() { animlist[currentAnim].SetIsPl(false); }
 void AnimManager::play() { animlist[currentAnim].SetIsPl(true); }
 void AnimManager::setNumFrame(float num) { animlist[currentAnim].setNumFrame(num); }
-
 int AnimManager::getNumFrame(){ return animlist[currentAnim].getNumFrame(); }
 bool AnimManager::getAnimFlip() { return animlist[currentAnim].getFlip(); }
-
-
-

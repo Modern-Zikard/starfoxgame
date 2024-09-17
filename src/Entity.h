@@ -2,7 +2,6 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
-
 #include "ClassAnimationManager.h"
 
 class Entity
@@ -21,8 +20,6 @@ protected:
 	bool dir;
 	
 public:
-
-
 	Entity(){}
 	Entity(AnimManager &a, float x, float y, bool dir);
 
@@ -32,12 +29,4 @@ public:
 
 	float getX();
 	float getY();
-
-	
 };
-
-
-
-
-
-

@@ -8,12 +8,10 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 		for (int j = x / TileSize; j < (x + w) / TileSize; j++)
 			if (TileMap[i][j] == 'S')
 			{
-
 				anim.set("explode");
 				dx = 0;
 				life = false;
 			}
-
 	anim.tick(time);
 }
 
