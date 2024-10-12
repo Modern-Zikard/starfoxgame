@@ -24,7 +24,7 @@ public:
 	Entity(AnimManager &a, float x, float y, bool dir);
 
 	virtual void update(float time,  float TileSize , std::vector <std::string> TileMap) = 0;
-	void draw(sf::RenderWindow& window);
+	void draw(sf::RenderWindow &window);
 	bool getLife();
 
 	float getX();

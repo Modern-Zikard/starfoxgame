@@ -12,10 +12,11 @@ protected:
 	bool hit = false;
 	bool duck = false;
 	bool onGround = true;
-	float sx;
-	float sy;
-	float sw = 24;
-	float sh = 42;
+
+	float ColldX = 18;
+	float ColldY = 10;					// Collision coordinate 
+	float CollWid = 24;					// Collision Rect width
+	float CollHei = 42;					// Collision Rect height
 
 public:
 

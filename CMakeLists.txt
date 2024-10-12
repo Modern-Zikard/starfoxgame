@@ -24,8 +24,8 @@ src/Entity.cpp
 src/Entity.h
 src/Enemy.cpp
 src/Enemy.h
-src/tinyxml2.cpp 
-src/tinyxml2.h
+src/Map.h 
+src/Map.cpp 
 img/SpriteList.png
 )
 

@@ -9,12 +9,12 @@
 int WindH = 720;
 int WindW = 1280;
 
-const int H = 8;
-const int W = 8;
+unsigned int MapHieght;
+unsigned int MapWidth;
 
 int main()
 {
-    /*std::vector <std::string> TileMap;
+    std::vector <std::string> TileMap;
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     TileMap.push_back("S                                      S");
     TileMap.push_back("S                                      S");
@@ -34,17 +34,23 @@ int main()
     TileMap.push_back("S                  SSSSSSSSS      S    S");
     TileMap.push_back("S                 SSSSSSSSSSSS    S    S");
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");*/
+    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
 
-    std::vector <std::string> TileMap;
+    MapWidth = TileMap[1].size();
+    MapHieght = TileMap.size();
+
+
+    
+
+   /* std::vector <std::string> TileMap;
     TileMap.push_back("SSSSSSSS");
     TileMap.push_back("S      S");
+    TileMap.push_back("SSSS   S");
+    TileMap.push_back("S      S");
+    TileMap.push_back("S    SSS");
     TileMap.push_back("S      S");
     TileMap.push_back("S      S");
-    TileMap.push_back("S      S");
-    TileMap.push_back("S      S");
-    TileMap.push_back("S      S");
-    TileMap.push_back("SSSSSSSS");
+    TileMap.push_back("SSSSSSSS");*/
    
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
@@ -84,6 +90,8 @@ int main()
         return EXIT_FAILURE;
     if (!t_tile.loadFromFile("img//Tiles.png"))
         return EXIT_FAILURE;
+
+    std::cout << "TileMap.size(); = " << TileMap.size() << std::endl;
     
     sf::Clock clock;
     sf::RectangleShape rectangle;
@@ -125,9 +133,9 @@ int main()
         
         window.clear(sf::Color::White);
 
-        for (int i = 0; i < H; i++)
+        for (int i = 0; i < MapHieght; i++)
         {
-            for (int j = 0; j < W; j++)
+            for (int j = 0; j < MapWidth; j++)
             {
                 if (TileMap[i][j] == 'K') s_tile.setTextureRect(sf::IntRect(32, 0, 32, 32));
                 if (TileMap[i][j] == 'S') s_tile.setTextureRect(sf::IntRect(0, 0, 32, 32));
