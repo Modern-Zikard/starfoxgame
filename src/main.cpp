@@ -3,6 +3,7 @@
 #include "Entity.h"
 #include "Enemy.h"
 #include "Bullet.h"
+#include "Map.h"
 #include <iostream>
 #include <list>
 
@@ -36,22 +37,19 @@ int main()
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
     TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
 
-    MapWidth = TileMap[1].size();
+    MapWidth = TileMap[0].size();
     MapHieght = TileMap.size();
 
+   /* std::vector <std::string> TestTileMap;
+    TestTileMap.push_back("SSSSSSSS");
+    TestTileMap.push_back("S      S");
+    TestTileMap.push_back("SSSS   S");
+    TestTileMap.push_back("S      S");
+    TestTileMap.push_back("S    SSS");
+    TestTileMap.push_back("S      S");
+    TestTileMap.push_back("S      S");
+    TestTileMap.push_back("SSSSSSSS");*/
 
-    
-
-   /* std::vector <std::string> TileMap;
-    TileMap.push_back("SSSSSSSS");
-    TileMap.push_back("S      S");
-    TileMap.push_back("SSSS   S");
-    TileMap.push_back("S      S");
-    TileMap.push_back("S    SSS");
-    TileMap.push_back("S      S");
-    TileMap.push_back("S      S");
-    TileMap.push_back("SSSSSSSS");*/
-   
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
 
@@ -60,6 +58,7 @@ int main()
     sf::Texture FoxTexture;
     sf::Texture t_tile;
     sf::Sprite s_tile;
+    
 
     AnimManager Fox;
     AnimManager Shoot;
