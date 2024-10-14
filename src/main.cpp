@@ -40,15 +40,15 @@ int main()
     MapWidth = TileMap[0].size();
     MapHieght = TileMap.size();
 
-   /* std::vector <std::string> TestTileMap;
-    TestTileMap.push_back("SSSSSSSS");
-    TestTileMap.push_back("S      S");
-    TestTileMap.push_back("SSSS   S");
-    TestTileMap.push_back("S      S");
-    TestTileMap.push_back("S    SSS");
-    TestTileMap.push_back("S      S");
-    TestTileMap.push_back("S      S");
-    TestTileMap.push_back("SSSSSSSS");*/
+    std::vector <std::string> TestTileMap;
+    TestTileMap.push_back("11111111");
+    TestTileMap.push_back("10000001");
+    TestTileMap.push_back("10000001");
+    TestTileMap.push_back("10000001");
+    TestTileMap.push_back("10000111");
+    TestTileMap.push_back("10000001");
+    TestTileMap.push_back("10000221");
+    TestTileMap.push_back("11111111");
 
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
