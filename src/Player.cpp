@@ -85,7 +85,7 @@ void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMa
 		for (int j = (x + ColldX) / TileSize; j < ((x + ColldX) + CollWid) / TileSize; j++)
 		{
 			/*std::cout << "Collision check - TileMap[" << i << "][" << j << "]" << std::endl;*/
-			if (TileMap[i][j] == 'S')
+			if (TileMap[i][j] == '1')
 			{
 				
 				if ((dx > 0) && (dir == 0)) x = (j * TileSize - CollWid) - ColldX;

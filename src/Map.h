@@ -2,11 +2,14 @@
 
 #include "ClassAnimationManager.h"
 
+
+
+
 class Map
 {
 private:
 	std::vector <std::string> TileMap;
-	std::vector <sf::Sprite> Tiles;
+	sf::Sprite TileSet;
 
 	unsigned int TileSize;
 	unsigned int MapHieght;
@@ -14,7 +17,7 @@ private:
 
 public:
 	Map();
-	Map(std::vector <std::string> TileMap, std::vector <sf::Sprite> Tiles, unsigned int TileSize);
+	Map(std::vector <std::string> TileMap, sf::Texture TileTexture, unsigned int TileSize);
 	
 	
 	

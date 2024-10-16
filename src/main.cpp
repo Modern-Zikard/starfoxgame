@@ -40,6 +40,15 @@ int main()
     MapWidth = TileMap[0].size();
     MapHieght = TileMap.size();
 
+
+    sf::Texture Sky;
+    sf::Texture Stone;
+    sf::Texture Grow;
+
+   
+    std::vector <sf::Sprite> s_tiles;
+   
+
     std::vector <std::string> TestTileMap;
     TestTileMap.push_back("11111111");
     TestTileMap.push_back("10000001");
@@ -50,20 +59,20 @@ int main()
     TestTileMap.push_back("10000221");
     TestTileMap.push_back("11111111");
 
+ 
+
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
 
     Player_view.reset(sf::FloatRect(0, 0, WindW/2, WindH/2));
 
     sf::Texture FoxTexture;
-    sf::Texture t_tile;
-    sf::Sprite s_tile;
+    sf::Texture TileSet;
     
-
     AnimManager Fox;
     AnimManager Shoot;
 
-    s_tile.setTexture(t_tile);
+  /*  s_tile.setTexture(t_tile);*/
     
     Fox.create("walk", FoxTexture, 0, 0, 60, 54, 6, 0.005, 60);
     Fox.create("stay", FoxTexture, 0, 486, 60, 54, 1, 0.005, 60);
@@ -87,10 +96,12 @@ int main()
  
     if (!FoxTexture.loadFromFile("img//FoxSpriteList.png"))
         return EXIT_FAILURE;
-    if (!t_tile.loadFromFile("img//Tiles.png"))
+   /* if (!t_tile.loadFromFile("img//Tiles.png"))
+        return EXIT_FAILURE;*/
+    if (!TileSet.loadFromFile("img//TileSet.png"))
         return EXIT_FAILURE;
-
-    std::cout << "TileMap.size(); = " << TileMap.size() << std::endl;
+   
+    Map Test(TestTileMap, TileSet, 32);
     
     sf::Clock clock;
     sf::RectangleShape rectangle;
@@ -132,17 +143,7 @@ int main()
         
         window.clear(sf::Color::White);
 
-        for (int i = 0; i < MapHieght; i++)
-        {
-            for (int j = 0; j < MapWidth; j++)
-            {
-                if (TileMap[i][j] == 'K') s_tile.setTextureRect(sf::IntRect(32, 0, 32, 32));
-                if (TileMap[i][j] == 'S') s_tile.setTextureRect(sf::IntRect(0, 0, 32, 32));
-                if (TileMap[i][j] == ' ') s_tile.setTextureRect(sf::IntRect(64, 0, 32, 32));
-                s_tile.setPosition(j * 32, i * 32);
-                window.draw(s_tile);
-            }
-        }
+        Test.MapDraw(window);
 
         for (it = entities.begin(); it != entities.end();)
         {
@@ -157,11 +158,11 @@ int main()
         
         for (it = entities.begin(); it != entities.end(); it++)
         {
-            (*it)->update(time,32, TileMap);
+            (*it)->update(time,32, Test.getTileMap());
             (*it)->draw(window);
         }
 
-        Krystal.update(time,32, TileMap);
+        Krystal.update(time,32, Test.getTileMap());
         Krystal.draw(window);
         
         Player_view.setCenter(Krystal.getX(), Krystal.getY());
