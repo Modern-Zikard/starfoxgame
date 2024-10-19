@@ -16,8 +16,8 @@ private:
 	unsigned int MapWidth;
 
 public:
-	Map();
-	Map(std::vector <std::string> TileMap, sf::Texture &TileTexture, unsigned int TileSize);
+
+	Map(std::vector <std::string> &TileMap, sf::Texture &TileTexture, unsigned int TileSize);
 	
 	
 	
@@ -26,6 +26,7 @@ public:
 
 
 	std::vector <std::string> getTileMap();
+	sf::Sprite getSprite();
 
 	int getTileSize();
 	int getMapHieght();

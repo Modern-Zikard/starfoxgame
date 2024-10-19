@@ -35,7 +35,7 @@ void Player::KeyCheck()
 				std::cout << "OnGround = " << onGround << std::endl;
 				onGround = false;
 				std::cout << "Jump!, OnGround = " << onGround << std::endl;
-				dy += -0.27;
+				dy += -0.3;
 				
 				STATE = State::jump;
 				
@@ -85,7 +85,7 @@ void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMa
 		for (int j = (x + ColldX) / TileSize; j < ((x + ColldX) + CollWid) / TileSize; j++)
 		{
 			/*std::cout << "Collision check - TileMap[" << i << "][" << j << "]" << std::endl;*/
-			if (TileMap[i][j] == '1')
+			if (TileMap[i][j] == '1' || TileMap[i][j] == '2')
 			{
 				
 				if ((dx > 0) && (dir == 0)) x = (j * TileSize - CollWid) - ColldX;

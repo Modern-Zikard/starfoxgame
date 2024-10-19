@@ -10,35 +10,30 @@
 int WindH = 720;
 int WindW = 1280;
 
-unsigned int MapHieght;
-unsigned int MapWidth;
-
 int main()
 {
     std::vector <std::string> TileMap;
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                              SSSSSSS S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                                      S");
-    TileMap.push_back("S                               KKKKKKKS");
-    TileMap.push_back("S                       SSSSSSSSSSSSSSSS");
-    TileMap.push_back("S                       SSSSS   SSSSS  S");
-    TileMap.push_back("SSSSSSSSS    SSSSSSSSSSSSSSS     SSS   S");
-    TileMap.push_back("S                     SSSSSS     SSS   S");
-    TileMap.push_back("S                  SSSSSSSSS      S    S");
-    TileMap.push_back("S                 SSSSSSSSSSSS    S    S");
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
-    TileMap.push_back("SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS");
+    TileMap.push_back("111111111111111111111111111111111111111111111111111");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000011111111111");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000000000000000000000000000000000001");
+    TileMap.push_back("100000000000000000022200000000222222222222000000001");
+    TileMap.push_back("100000000000000000211122220000000000000000000000001");
+    TileMap.push_back("100000000000000002100111112200000000000000000222221");
+    TileMap.push_back("100000000000000021000000111122000000000000002111111");
+    TileMap.push_back("111110000000000000000011111111100000000000021111111");
+    TileMap.push_back("111111111000000000000111111000000000000000211111111");
+    TileMap.push_back("100000000100000000000011110000000000000002100000001");
+    TileMap.push_back("100000000000011111111111000000000000000210000000001");
+    TileMap.push_back("100000000000000000000000100000000000000210000000001");
+    TileMap.push_back("122222222222222222222222222222222222222222222222221");
+    TileMap.push_back("111111111111111111111111111111111111111111111111111");
 
-    MapWidth = TileMap[0].size();
-    MapHieght = TileMap.size();
 
 
     std::vector <sf::Sprite> s_tiles;
@@ -79,7 +74,7 @@ int main()
     Shoot.create("move", FoxTexture, 0, 318, 6, 6, 3, 0.005, 6);
     Shoot.create("explode", FoxTexture, 0, 325, 7, 10, 3, 0.0001, 7);
     
-    Player Krystal(Fox, 100, 100);
+    Player Krystal(Fox, 50, 50);
     
     std::list<Entity*> entities;
     std::list<Entity*>::iterator it;
@@ -96,7 +91,7 @@ int main()
     if (!TileTexture.loadFromFile("img//TileSet.png"))
         return EXIT_FAILURE;
    
-    Map Test(TestTileMap, TileTexture, 32);
+    Map Test(TileMap, TileTexture, 32);
     
     sf::Clock clock;
     sf::RectangleShape rectangle;
@@ -138,19 +133,9 @@ int main()
         
         window.clear(sf::Color::White);
 
+       
         Test.MapDraw(window);
-        /*for (int i = 0; i < Test.getMapHieght(); i++)
-        {
-            for (int j = 0; j < Test.getMapWidth(); j++)
-            {
-                if (TileMap[i][j] == '0') TileSet.setTextureRect(sf::IntRect(0, 0, 32, 32));
-                if (TileMap[i][j] == '1') TileSet.setTextureRect(sf::IntRect(32, 0, 32, 32));
-                if (TileMap[i][j] == '2') TileSet.setTextureRect(sf::IntRect(64, 0, 32, 32));
-                TileSet.setPosition(j * TileSize, i * TileSize);
-                window.draw(TileSet);
-                std::cout << "draw map" << std::endl;
-            }
-        }*/
+        
 
         for (it = entities.begin(); it != entities.end();)
         {
@@ -165,11 +150,11 @@ int main()
         
         for (it = entities.begin(); it != entities.end(); it++)
         {
-            (*it)->update(time,32, Test.getTileMap());
+            (*it)->update(time,Test.getTileSize(), Test.getTileMap());
             (*it)->draw(window);
         }
 
-        Krystal.update(time,32, Test.getTileMap());
+        Krystal.update(time, Test.getTileSize(), Test.getTileMap());
         Krystal.draw(window);
         
         Player_view.setCenter(Krystal.getX(), Krystal.getY());
