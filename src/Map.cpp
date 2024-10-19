@@ -8,10 +8,10 @@ Map::Map()
     this->MapWidth = 8;
 }
 
-Map::Map(std::vector<std::string> TileMap, sf::Texture TileTexture, unsigned int TileSize)
+Map::Map(std::vector<std::string> TileMap, sf::Texture &TileTexture, unsigned int TileSize)
 {
   
-    TileSet.setTexture(TileTexture);
+    TileSprite.setTexture(TileTexture);
     this->TileMap = TileMap;
     this->MapHieght = TileMap.size();
     if (TileMap.size() > 0) this->MapWidth = TileMap[0].size();
@@ -26,11 +26,11 @@ void Map::MapDraw(sf::RenderWindow &window)
     {
         for (int j = 0; j < MapWidth; j++)
         {
-            if (TileMap[i][j] == '0') TileSet.setTextureRect(sf::IntRect(0, 0, 32, 32));
-            if (TileMap[i][j] == '1') TileSet.setTextureRect(sf::IntRect(32, 0, 32, 32));
-            if (TileMap[i][j] == '2') TileSet.setTextureRect(sf::IntRect(64, 0, 32, 32));
-            TileSet.setPosition(j * TileSize, i * TileSize);
-            window.draw(TileSet);
+            if (TileMap[i][j] == '0') TileSprite.setTextureRect(sf::IntRect(0, 0, 32, 32));
+            if (TileMap[i][j] == '1') TileSprite.setTextureRect(sf::IntRect(32, 0, 32, 32));
+            if (TileMap[i][j] == '2') TileSprite.setTextureRect(sf::IntRect(64, 0, 32, 32));
+            TileSprite.setPosition(j * TileSize, i * TileSize);
+            window.draw(TileSprite);
             std::cout << "draw map" << std::endl;
         }
     }

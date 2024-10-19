@@ -41,11 +41,6 @@ int main()
     MapHieght = TileMap.size();
 
 
-    sf::Texture Sky;
-    sf::Texture Stone;
-    sf::Texture Grow;
-
-   
     std::vector <sf::Sprite> s_tiles;
    
 
@@ -67,7 +62,7 @@ int main()
     Player_view.reset(sf::FloatRect(0, 0, WindW/2, WindH/2));
 
     sf::Texture FoxTexture;
-    sf::Texture TileSet;
+    sf::Texture TileTexture;
     
     AnimManager Fox;
     AnimManager Shoot;
@@ -98,10 +93,10 @@ int main()
         return EXIT_FAILURE;
    /* if (!t_tile.loadFromFile("img//Tiles.png"))
         return EXIT_FAILURE;*/
-    if (!TileSet.loadFromFile("img//TileSet.png"))
+    if (!TileTexture.loadFromFile("img//TileSet.png"))
         return EXIT_FAILURE;
    
-    Map Test(TestTileMap, TileSet, 32);
+    Map Test(TestTileMap, TileTexture, 32);
     
     sf::Clock clock;
     sf::RectangleShape rectangle;
@@ -144,6 +139,18 @@ int main()
         window.clear(sf::Color::White);
 
         Test.MapDraw(window);
+        /*for (int i = 0; i < Test.getMapHieght(); i++)
+        {
+            for (int j = 0; j < Test.getMapWidth(); j++)
+            {
+                if (TileMap[i][j] == '0') TileSet.setTextureRect(sf::IntRect(0, 0, 32, 32));
+                if (TileMap[i][j] == '1') TileSet.setTextureRect(sf::IntRect(32, 0, 32, 32));
+                if (TileMap[i][j] == '2') TileSet.setTextureRect(sf::IntRect(64, 0, 32, 32));
+                TileSet.setPosition(j * TileSize, i * TileSize);
+                window.draw(TileSet);
+                std::cout << "draw map" << std::endl;
+            }
+        }*/
 
         for (it = entities.begin(); it != entities.end();)
         {
