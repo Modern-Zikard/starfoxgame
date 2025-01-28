@@ -78,6 +78,10 @@ void Player::KeyCheck()
 	}
 }
 
+Player::Player(AnimManager &a, AnimManager &tail, float x, float y, bool dir)
+{
+}
+
 void Player::Collision(int dir, float TileSize, std::vector <std::string> TileMap)
 {
 	
@@ -128,8 +132,14 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 		anim.set("shoot");
 		if (STATE == State::walk)
 		{
+			if (STATE == State::jump)
+			{
+				anim.set("shootjump");
+			}
+			else 
 			anim.set("shootrun");
 		}
+		
 	}
 	
 	if (dir) anim.flip(true);

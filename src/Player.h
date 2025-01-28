@@ -7,6 +7,8 @@
 class Player : public Entity
 {
 protected:
+
+	
 	enum class State : unsigned int { stay, walk, jump, duck, swim, climb } STATE;
 	bool shoot = false;
 	bool hit = false;
@@ -21,7 +23,10 @@ protected:
 public:
 
 	Player(){}
+	
 	Player(AnimManager &a, float x, float y, bool dir = 0);
+
+	Player(AnimManager &a, AnimManager &tail, float x, float y, bool dir = 0);
 
 	std::map<std::string, bool> key;
 	void KeyCheck();

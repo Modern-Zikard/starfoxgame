@@ -6,8 +6,9 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 
 	for (int i = y / TileSize; i < (y + h) / TileSize; i++)
 		for (int j = x / TileSize; j < (x + w) / TileSize; j++)
-			if (TileMap[i][j] == 'S')
+			if ((TileMap[i][j] == '1') || (TileMap[i][j] == '2'))
 			{
+				std::cout << std::endl << " bullet is gone!" << std::endl;
 				anim.set("explode");
 				dx = 0;
 				life = false;

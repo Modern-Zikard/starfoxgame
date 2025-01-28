@@ -29,7 +29,7 @@ int main()
     TileMap.push_back("111110000000000000000011111111100000000000021111111");
     TileMap.push_back("111111111000000000000111111000000000000000211111111");
     TileMap.push_back("100000000100000000000011110000000000000002100000001");
-    TileMap.push_back("100000000000011111111111000000000000000210000000001");
+    TileMap.push_back("100000000000011111000000000000000000000210000000001");
     TileMap.push_back("100000000000000000000000100000000000000210000000001");
     TileMap.push_back("122222222222222222222222222222222222222222222222221");
     TileMap.push_back("111111111111111111111111111111111111111111111111111");
@@ -54,44 +54,54 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
 
-    Player_view.reset(sf::FloatRect(0, 0, WindW/2, WindH/2));
+    Player_view.reset(sf::FloatRect(0, 0, WindW/3, WindH/3));
 
     sf::Texture FoxTexture;
+    sf::Texture Shoots;
     sf::Texture TileTexture;
     
-    AnimManager Fox;
+    AnimManager FoxBody;
+    AnimManager FoxTail;
+    AnimManager FoxEyes;
     AnimManager Shoot;
+    AnimManager TestShoot;
 
-  /*  s_tile.setTexture(t_tile);*/
     
-    Fox.create("walk", FoxTexture, 0, 0, 60, 54, 6, 0.005, 60);
-    Fox.create("stay", FoxTexture, 0, 486, 60, 54, 1, 0.005, 60);
-    Fox.create("shoot", FoxTexture, 0, 108, 60, 54, 5, 0.006, 60);
-    Fox.create("duck", FoxTexture, 0, 218, 44, 49, 1, 0.003, 44);
-    Fox.create("shootrun", FoxTexture, 0, 216, 60, 54, 5, 0.006, 60);
-    Fox.create("jump", FoxTexture, 0, 432, 60, 54, 1, 0.005, 60);
+    FoxBody.create("walk", FoxTexture, 0, 0, 60, 54, 6, 0.005, 60);
+    FoxBody.create("shoot", FoxTexture, 0, 54, 60, 54, 5, 0.01, 60);
+    FoxBody.create("shootrun", FoxTexture, 0, 108, 60, 54, 5, 0.01, 60);
+    FoxBody.create("shootjump", FoxTexture, 0, 162, 60, 54, 3, 0.01, 60);
+    FoxBody.create("stay", FoxTexture, 0, 216, 60, 54, 1, 0.005, 60);
+    FoxBody.create("jump", FoxTexture, 0, 270, 60, 54, 1, 0.005, 60);
+    
+    FoxBody.create("duck", FoxTexture, 0, 218, 44, 49, 1, 0.003, 44);
+    
 
-    Shoot.create("move", FoxTexture, 0, 318, 6, 6, 3, 0.005, 6);
-    Shoot.create("explode", FoxTexture, 0, 325, 7, 10, 3, 0.0001, 7);
+
+
+    Shoot.create("move", Shoots, 0, 0, 6, 6, 3, 0.005, 6);
+    Shoot.create("explode", Shoots, 0, 6, 7, 10, 3, 0.0001, 7);
     
-    Player Krystal(Fox, 50, 50);
+    Player Krystal(FoxBody, 50, 50);
     
     std::list<Entity*> entities;
     std::list<Entity*>::iterator it;
 
    /* entities.push_back(new Enemy(Fox, 780, 339));*/
     /*entities.push_back(new Enemy(Fox, 100, 50));*/
-    entities.push_back(new Enemy(Fox, 100, 50));
+    entities.push_back(new Enemy(FoxBody, 100, 50));
     /*entities.push_back(new Enemy(Fox, 1200, 300));*/
  
-    if (!FoxTexture.loadFromFile("img//FoxSpriteList.png"))
+    if (!FoxTexture.loadFromFile("img//FoxSpriteList1.png"))
+        return EXIT_FAILURE;
+    if (!Shoots.loadFromFile("img//Shoots.png"))
         return EXIT_FAILURE;
    /* if (!t_tile.loadFromFile("img//Tiles.png"))
         return EXIT_FAILURE;*/
     if (!TileTexture.loadFromFile("img//TileSet.png"))
         return EXIT_FAILURE;
    
-    Map Test(TileMap, TileTexture, 32);
+    Map Test(TileMap, TileTexture, 21);
     
     sf::Clock clock;
     sf::RectangleShape rectangle;
@@ -111,7 +121,7 @@ int main()
                 window.close();
             if(event.type == sf::Event::KeyPressed)
                 if((event.key.code == sf::Keyboard::Space))
-                    entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+11, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, Krystal.getDir()));
         }
        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Krystal.key["Down"] = true;

@@ -7,7 +7,12 @@
 class Entity
 {
 protected:
+
+	
 	AnimManager anim;
+	AnimManager TailAnim;
+	AnimManager EyesAnim;
+	
 
 	float dx = 0;
 	float dy = 0;
@@ -22,6 +27,7 @@ protected:
 public:
 	Entity(){}
 	Entity(AnimManager &a, float x, float y, bool dir);
+	Entity(AnimManager &a, AnimManager &t, AnimManager &e, float x, float y, bool dir);
 
 	virtual void update(float time,  float TileSize , std::vector <std::string> TileMap) = 0;
 	void draw(sf::RenderWindow &window);
