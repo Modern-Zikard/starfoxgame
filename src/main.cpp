@@ -70,9 +70,9 @@ int main()
     FoxBody.create("walk", FoxTexture, 0, 0, 60, 54, 6, 0.005, 60);
     FoxBody.create("shoot", FoxTexture, 0, 54, 60, 54, 5, 0.01, 60);
     FoxBody.create("shootrun", FoxTexture, 0, 108, 60, 54, 5, 0.01, 60);
-    FoxBody.create("shootjump", FoxTexture, 0, 162, 60, 54, 3, 0.01, 60);
+    FoxBody.create("shootjump", FoxTexture, 0, 270, 60, 54, 3, 0.01, 60);
     FoxBody.create("stay", FoxTexture, 0, 216, 60, 54, 1, 0.005, 60);
-    FoxBody.create("jump", FoxTexture, 0, 270, 60, 54, 1, 0.005, 60);
+    FoxBody.create("jump", FoxTexture, 0, 162, 60, 54, 1, 0.005, 60);
     
     FoxBody.create("duck", FoxTexture, 0, 218, 44, 49, 1, 0.003, 44);
     
