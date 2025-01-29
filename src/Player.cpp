@@ -129,18 +129,14 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 
 	if (shoot)
 	{
-		anim.set("shoot");
-		if (STATE == State::walk)
+		if (onGround)
 		{
-			if (STATE == State::jump)
-			{
-				anim.set("shootjump");
-			}
-			else 
-			anim.set("shootrun");
+			anim.set("shoot");
+			if (STATE == State::walk) anim.set("shootrun");
 		}
-		
+		else anim.set("shootjump");
 	}
+		
 	
 	if (dir) anim.flip(true);
 	else anim.flip(false);
