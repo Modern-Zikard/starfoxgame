@@ -20,6 +20,7 @@ Animation::Animation(sf::Texture &t, int x, int y,  int w, int h, int count, flo
 
 void Animation::tick(float time)
 {
+	
 	if (!isPlaying) return;
 	currentFrame += Speed * time;
 	if (currentFrame > frames.size())

@@ -54,7 +54,7 @@ void Player::KeyCheck()
 	if (key["Space"])
 	{
 		shoot = true;
-		anim.setNumFrame(0);
+		
 	}
 	//////////////Œ“œ”— ¿Õ»≈  À¿¬»ÿ///////////////////
 	if (!(key["Right"] || key["Left"]))
@@ -73,8 +73,9 @@ void Player::KeyCheck()
 	}
 	if (!key["Space"])
 	{
-		if(anim.getNumFrame() == 4)
-			shoot = false;
+		/*if(anim.getNumFrame() == 4)*/
+		
+		shoot = false;
 	}
 }
 
@@ -157,9 +158,10 @@ void Player::update(float time, float TileSize, std::vector <std::string> TileMa
 	key["Down"] = false;
 	key["Space"] = false;
 
+
 	/*std::cout << "dy = " << dy << ", dx = " << dx << std::endl;*/
 }
 
-void Player::getNumFrame(float num) { anim.setNumFrame(num); }
+void Player::setNumFrame(float num) { anim.setNumFrame(num); }
 int Player::getNumFrame() { return anim.getNumFrame(); }
 bool Player::getDir() { return this->dir; }

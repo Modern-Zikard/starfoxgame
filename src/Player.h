@@ -32,7 +32,7 @@ public:
 	void KeyCheck();
 	void update(float time, float TileSize, std::vector <std::string> TileMap);
 	void Collision(int dir, float TileSize, std::vector <std::string> TileMap);
-	void getNumFrame(float num);
+	void setNumFrame(float num);
 	int getNumFrame();
 	bool getDir();
 };

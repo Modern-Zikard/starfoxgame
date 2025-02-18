@@ -4,6 +4,7 @@
 #include "Enemy.h"
 #include "Bullet.h"
 #include "Map.h"
+#include "Cursor.h"
 #include <iostream>
 #include <list>
 
@@ -35,6 +36,15 @@ int main()
     TileMap.push_back("111111111111111111111111111111111111111111111111111");
 
 
+    sf::Font font;
+    if (!font.loadFromFile("fonts//Amatic-Bold.ttf"))
+        return EXIT_FAILURE;
+    sf::Text text("Hello SFML", font, 20);
+    sf::Color col(255, 0, 0);
+    text.setColor(col);
+    text.setPosition(25, 25);
+
+    
 
     std::vector <sf::Sprite> s_tiles;
    
@@ -55,10 +65,15 @@ int main()
     sf::View Player_view;
 
     Player_view.reset(sf::FloatRect(0, 0, WindW/3, WindH/3));
-
+    sf::Texture TextCursor;
     sf::Texture FoxTexture;
     sf::Texture Shoots;
     sf::Texture TileTexture;
+
+    if (!TextCursor.loadFromFile("img//Cursor.png"))
+        return EXIT_FAILURE;
+
+    
     
     AnimManager FoxBody;
     AnimManager FoxTail;
@@ -69,7 +84,7 @@ int main()
     
     FoxBody.create("walk", FoxTexture, 0, 0, 60, 54, 6, 0.005, 60);
     FoxBody.create("shoot", FoxTexture, 0, 54, 60, 54, 5, 0.01, 60);
-    FoxBody.create("shootrun", FoxTexture, 0, 108, 60, 54, 5, 0.01, 60);
+    FoxBody.create("shootrun", FoxTexture, 0, 108, 60, 54, 6, 0.005, 60);
     FoxBody.create("shootjump", FoxTexture, 0, 270, 60, 54, 3, 0.01, 60);
     FoxBody.create("stay", FoxTexture, 0, 216, 60, 54, 1, 0.005, 60);
     FoxBody.create("jump", FoxTexture, 0, 162, 60, 54, 1, 0.005, 60);
@@ -80,7 +95,9 @@ int main()
 
 
     Shoot.create("move", Shoots, 0, 0, 6, 6, 3, 0.005, 6);
-    Shoot.create("explode", Shoots, 0, 6, 7, 10, 3, 0.0001, 7);
+    Shoot.create("explode", Shoots, 0, 6, 15, 15, 5, 0.1, 15);
+
+    Cursor cur(TextCursor, 50, 50, 25, 25);
     
     Player Krystal(FoxBody, 50, 50);
     
@@ -92,7 +109,8 @@ int main()
     entities.push_back(new Enemy(FoxBody, 100, 50));
     /*entities.push_back(new Enemy(Fox, 1200, 300));*/
  
-    if (!FoxTexture.loadFromFile("img//FoxSpriteList1.png"))
+    
+    if (!FoxTexture.loadFromFile("img//FoxSpriteList1.png")) 
         return EXIT_FAILURE;
     if (!Shoots.loadFromFile("img//Shoots.png"))
         return EXIT_FAILURE;
@@ -121,9 +139,11 @@ int main()
                 window.close();
             if(event.type == sf::Event::KeyPressed)
                 if((event.key.code == sf::Keyboard::Space))
-                    entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, Krystal.getDir()));
+                    if(Krystal.getNumFrame() == 0)
+                        entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, Krystal.getDir()));
         }
        
+        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Krystal.key["Down"] = true;
   
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
@@ -140,6 +160,14 @@ int main()
             // quit...
             return EXIT_SUCCESS;
         }
+
+        if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Space) &&
+            !sf::Keyboard::isKeyPressed(sf::Keyboard::LControl) &&
+            !sf::Keyboard::isKeyPressed(sf::Keyboard::Left) &&
+            !sf::Keyboard::isKeyPressed(sf::Keyboard::Right) &&
+            !sf::Keyboard::isKeyPressed(sf::Keyboard::Up)
+            )
+            Krystal.setNumFrame(0);
         
         window.clear(sf::Color::White);
 
@@ -168,9 +196,14 @@ int main()
         Krystal.draw(window);
         
         Player_view.setCenter(Krystal.getX(), Krystal.getY());
-
+        
+        cur.update(time);
+        cur.draw(window);
+        
         window.setView(Player_view);
+       
         window.display();
+        
     }
     return EXIT_SUCCESS;
 }
