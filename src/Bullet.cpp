@@ -10,21 +10,15 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 			if ((TileMap[i][j] == '1') || (TileMap[i][j] == '2'))
 			{
 				
-				
-				
-				
 				anim.set("explode");//x-3 y-4
 				if(dir == 0)
 				{
 					x -= 4;
 					y -= 4;
 				}
-				
-				
 				dx = 0;
 				std::cout << std::endl << "anim.getNumFrame() = " << anim.getNumFrame() << std::endl;
-				
-				
+
 			}
 	std::cout << std::endl << "bullet x = " << x << std::endl << "bullet y = " << y << std::endl;
 	if(anim.getNumFrame()== 4)
@@ -44,6 +38,7 @@ Bullet::Bullet(AnimManager &a, float x, float y, bool dir)
 	anim = a;
 	anim.set("move");
 	this->x = x;
+
 	this->y = y;
 	dx = 0.2;
 	if (dir == 1) dx = -0.2;
