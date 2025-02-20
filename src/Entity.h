@@ -4,6 +4,7 @@
 #include <SFML/Graphics.hpp>
 #include "ClassAnimationManager.h"
 
+
 class Entity
 {
 protected:

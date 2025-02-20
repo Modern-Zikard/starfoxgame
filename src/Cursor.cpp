@@ -16,6 +16,12 @@ void Cursor::draw(sf::RenderWindow& window)
 	window.draw(sprite);
 }
 
+float Cursor::getX(){return x;}
+float Cursor::getY(){return y;}
+
+float Cursor::getCenterX(){return x + (w / 2);}
+float Cursor::getCenterY(){return y + (h / 2);}
+
 void Cursor::update(float time)
 {
 	std::cout << "CursorUpdate" << std::endl;
@@ -39,7 +45,6 @@ void Cursor::update(float time)
 		std::cout << "S push" << std::endl;
 		y += 0.1 * time;
 	}
-	
 }
 
 

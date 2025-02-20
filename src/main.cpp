@@ -140,7 +140,7 @@ int main()
             if(event.type == sf::Event::KeyPressed)
                 if((event.key.code == sf::Keyboard::Space))
                     if(Krystal.getNumFrame() == 0)
-                        entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, Krystal.getDir()));
+                        entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, cur.getCenterX(), cur.getCenterY(), Krystal.getDir()));
         }
        
         
