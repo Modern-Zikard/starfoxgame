@@ -31,7 +31,9 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 
 Bullet::Bullet(AnimManager& a, float x, float y, float CurX, float CurY , bool dir)
 {
-	float k = 0.5;   // Коэффициент скорости пули 
+	float k = 0.005;   // Коэффициент скорости пули 
+	float mx = 1;
+	float my = 1;
 	StartX = x;
 	StartY = y;
 	CursorX = CurX;
@@ -41,11 +43,17 @@ Bullet::Bullet(AnimManager& a, float x, float y, float CurX, float CurY , bool d
 	this->x = x;
 
 	this->y = y;
-	dx = k * (CursorX - StartX) / (fabs(CursorX - StartX)+fabs(CursorY - StartY));
-	dy = k * (CursorY - StartY) / (fabs(CursorX - StartX) + fabs(CursorY - StartY));
+	float VecX = CursorX - StartX;
+	float VecY = CursorY - StartY;
+	if (VecX < 0)
+		mx = -1;
+	if (VecY < 0)
+		my = -1;
+	dx = k * mx * sqrt(fabs(VecX) * fabs(VecX)) / sqrt(fabs(VecX)* fabs(VecX) + fabs(VecY)* fabs(VecY));
+	dy =  k * my * sqrt(fabs(VecY) * fabs(VecY)) / sqrt(fabs(VecX) * fabs(VecX) + fabs(VecY) * fabs(VecY));
 	if (StartX == CursorX) { dy = 0; dx = k; }
 	if (StartY == CursorY) { dy = k; dx = 0; }
-	 
+	
 
 	w = h = 5;
 	life = true;

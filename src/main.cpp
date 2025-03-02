@@ -64,13 +64,15 @@ int main()
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
     sf::View Player_view;
 
+    sf::Vector2i mp = sf::Mouse::getPosition(window);
+
     Player_view.reset(sf::FloatRect(0, 0, WindW/3, WindH/3));
     sf::Texture TextCursor;
     sf::Texture FoxTexture;
     sf::Texture Shoots;
     sf::Texture TileTexture;
 
-    if (!TextCursor.loadFromFile("img//Cursor.png"))
+    if (!TextCursor.loadFromFile("img//Cursor2.png"))
         return EXIT_FAILURE;
 
     
@@ -138,9 +140,35 @@ int main()
             if (event.type == sf::Event::Closed)
                 window.close();
             if(event.type == sf::Event::KeyPressed)
-                if((event.key.code == sf::Keyboard::Space))
-                    if(Krystal.getNumFrame() == 0)
-                        entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX()+54, Krystal.getY()+18, cur.getCenterX(), cur.getCenterY(), Krystal.getDir()));
+            {
+                if ((event.key.code == sf::Keyboard::Space))
+                    if (Krystal.getNumFrame() == 0)
+                        entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX() + 54, Krystal.getY() + 18, cur.getCenterX(), cur.getCenterY(), Krystal.getDir()));
+                if ((event.key.code == sf::Keyboard::LShift))
+                {
+                    
+
+                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 50, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 75, 50, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 100, 50, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 125, 50, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 50, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 75, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 100, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 125, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 150, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 125, 150, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 100, 150, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 75, 150, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 150, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 125, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 100, Krystal.getDir()));
+                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 75, Krystal.getDir()));
+
+                }
+                        
+                    
+            }
         }
        
         
@@ -200,7 +228,7 @@ int main()
         cur.update(time);
         cur.draw(window);
         
-        window.setView(Player_view);
+  /*      window.setView(Player_view);*/
        
         window.display();
         
