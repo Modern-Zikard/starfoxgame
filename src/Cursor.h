@@ -23,8 +23,12 @@ public:
 	void update(float time);
 	void draw(sf::RenderWindow& window);
 
+	void setX(float x);
+	void setY(float y);
+
 	float getX();
 	float getY();
+
 	float getCenterX();
 	float getCenterY();
 };

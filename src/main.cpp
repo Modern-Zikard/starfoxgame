@@ -6,6 +6,7 @@
 #include "Map.h"
 #include "Cursor.h"
 #include <iostream>
+#include <cmath>
 #include <list>
 
 int WindH = 720;
@@ -59,6 +60,8 @@ int main()
     TestTileMap.push_back("10000221");
     TestTileMap.push_back("11111111");
 
+
+    
  
 
     sf::RenderWindow window(sf::VideoMode(WindW, WindH), "Game!");
@@ -71,8 +74,11 @@ int main()
     sf::Texture FoxTexture;
     sf::Texture Shoots;
     sf::Texture TileTexture;
+    sf::Texture Stone;
 
     if (!TextCursor.loadFromFile("img//Cursor2.png"))
+        return EXIT_FAILURE;
+    if (!Stone.loadFromFile("img//Stone.png"))
         return EXIT_FAILURE;
 
     
@@ -102,6 +108,8 @@ int main()
     Cursor cur(TextCursor, 50, 50, 25, 25);
     
     Player Krystal(FoxBody, 50, 50);
+
+   
     
     std::list<Entity*> entities;
     std::list<Entity*>::iterator it;
@@ -120,13 +128,23 @@ int main()
         return EXIT_FAILURE;*/
     if (!TileTexture.loadFromFile("img//TileSet.png"))
         return EXIT_FAILURE;
-   
+    
     Map Test(TileMap, TileTexture, 21);
     
+    sf::CircleShape Circle;
+    Circle.setRadius(10);
+    Circle.setTexture(&Stone);
+    Circle.setOrigin(30, 30);
     sf::Clock clock;
     sf::RectangleShape rectangle;
-
     rectangle.setSize(sf::Vector2f(32, 32));
+
+    std::vector<sf::CircleShape> bulletsTest;
+    std::vector<float> angels;
+
+
+
+    
  
     while (window.isOpen())
     {
@@ -139,43 +157,26 @@ int main()
         {
             if (event.type == sf::Event::Closed)
                 window.close();
-            if(event.type == sf::Event::KeyPressed)
+            if(event.type == sf::Event::MouseButtonPressed)
             {
-                if ((event.key.code == sf::Keyboard::Space))
+                if ((event.key.code == sf::Mouse::Left))
                     if (Krystal.getNumFrame() == 0)
                         entities.push_back(new Bullet(Shoot, Krystal.getDir() ? Krystal.getX() : Krystal.getX() + 54, Krystal.getY() + 18, cur.getCenterX(), cur.getCenterY(), Krystal.getDir()));
-                if ((event.key.code == sf::Keyboard::LShift))
+                /*if ((event.key.code == sf::Keyboard::LShift))
                 {
-                    
-
-                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 50, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 75, 50, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 100, 50, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 125, 50, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 50, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 75, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 100, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 125, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 150, 150, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 125, 150, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 100, 150, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 75, 150, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 150, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 125, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 100, Krystal.getDir()));
-                    entities.push_back(new Bullet(Shoot, 100, 100, 50, 75, Krystal.getDir()));
-
-                }
+                  
+                }*/
                         
                     
             }
         }
+        if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+            Krystal.key["Space"] = true;
        
-        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::LControl)) Krystal.key["Down"] = true;
   
-        if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))
-            Krystal.key["Space"] = true;
+        /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Space))*/
+            
             
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))     Krystal.key["Left"] = true;
       
@@ -219,17 +220,20 @@ int main()
             (*it)->update(time,Test.getTileSize(), Test.getTileMap());
             (*it)->draw(window);
         }
-
+        
         Krystal.update(time, Test.getTileSize(), Test.getTileMap());
         Krystal.draw(window);
         
         Player_view.setCenter(Krystal.getX(), Krystal.getY());
         
+        cur.setX(sf::Mouse::getPosition(window).x);
+        cur.setY(sf::Mouse::getPosition(window).y);
         cur.update(time);
         cur.draw(window);
+        Circle.setPosition(250, 250);
+        window.draw(Circle);
+       /* window.setView(Player_view);*/
         
-  /*      window.setView(Player_view);*/
-       
         window.display();
         
     }

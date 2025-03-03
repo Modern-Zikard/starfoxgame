@@ -31,7 +31,7 @@ void Bullet::update(float time, float TileSize, std::vector<std::string> TileMap
 
 Bullet::Bullet(AnimManager& a, float x, float y, float CurX, float CurY , bool dir)
 {
-	float k = 0.005;   // Коэффициент скорости пули 
+	float k = 0.5;   // Коэффициент скорости пули 
 	float mx = 1;
 	float my = 1;
 	StartX = x;

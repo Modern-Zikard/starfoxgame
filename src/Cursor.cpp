@@ -16,15 +16,20 @@ void Cursor::draw(sf::RenderWindow& window)
 	window.draw(sprite);
 }
 
+void Cursor::setX(float x){this->x = x;}
+void Cursor::setY(float y){this->y = y;}
+
 float Cursor::getX(){return x;}
 float Cursor::getY(){return y;}
+
+
 
 float Cursor::getCenterX(){return x + (w / 2);}
 float Cursor::getCenterY(){return y + (h / 2);}
 
 void Cursor::update(float time)
 {
-	std::cout << "CursorUpdate" << std::endl;
+	/*std::cout << "CursorUpdate" << std::endl;
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::A)) 
 	{
 		std::cout << "A push" << std::endl;
@@ -44,7 +49,7 @@ void Cursor::update(float time)
 	{
 		std::cout << "S push" << std::endl;
 		y += 0.1 * time;
-	}
+	}*/
 }
 
 
