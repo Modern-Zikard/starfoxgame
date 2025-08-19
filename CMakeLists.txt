@@ -26,6 +26,8 @@ src/Enemy.cpp
 src/Enemy.h
 src/Map.h 
 src/Map.cpp 
+src/Cursor.h 
+src/Cursor.cpp 
 img/SpriteList.png
 )
 
