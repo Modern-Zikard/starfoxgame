@@ -14,11 +14,22 @@ Player::Player(AnimManager &a, float x, float y, bool dir)
 void Player::KeyCheck()
 {
 	//////////////ÍÀÆÀÒÈÅ ÊËÀÂÈØ///////////////////
+	if (key["K"])
+	{
+		GunReady = true;
+		std::cout << "GunReady = " << GunReady << std::endl;
+	}
+	if (key["L"])
+	{
+		GunReady = false;
+		std::cout << "GunReady = " << GunReady << std::endl;
+	}
 	if (key["Left"])
 	{
 		dir = true;
 		if (STATE != State::duck) dx = -0.1;
 		if (STATE == State::stay) STATE = State::walk;
+		std::cout << "Left " << std::endl;
 	}
 	if (key["Right"])
 	{
@@ -57,6 +68,16 @@ void Player::KeyCheck()
 		
 	}
 	//////////////ÎÒÏÓÑÊÀÍÈÅ ÊËÀÂÈØ///////////////////
+	if (!key["K"])
+	{
+		GunReady = true;
+		
+	}
+	if (!key["L"])
+	{
+		GunReady = false;
+		
+	}
 	if (!(key["Right"] || key["Left"]))
 	{
 		dx = 0;

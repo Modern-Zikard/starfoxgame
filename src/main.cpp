@@ -183,6 +183,9 @@ int main()
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))    Krystal.key["Right"] = true;
       
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))       Krystal.key["Up"] = true;
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::K))     Krystal.key["K"] = true;
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::L))     Krystal.key["L"] = true;
        
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
         {
@@ -225,9 +228,14 @@ int main()
         Krystal.draw(window);
         
         Player_view.setCenter(Krystal.getX(), Krystal.getY());
+
+        sf::Vector2u windowSize = window.getSize();
+
+       /* std::cout << "Ширина окна = " << windowSize.x << std::endl;
+        std::cout << "Высота окна = " << windowSize.y << std::endl;*/
         
-        cur.setX(sf::Mouse::getPosition(window).x);
-        cur.setY(sf::Mouse::getPosition(window).y);
+        cur.setX(WindW* sf::Mouse::getPosition(window).x / windowSize.x);
+        cur.setY(WindH* sf::Mouse::getPosition(window).y / windowSize.y);
         cur.update(time);
         cur.draw(window);
         Circle.setPosition(250, 250);

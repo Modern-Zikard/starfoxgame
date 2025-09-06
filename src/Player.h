@@ -14,6 +14,7 @@ protected:
 	bool hit = false;
 	bool duck = false;
 	bool onGround = true;
+	bool GunReady = false;
 
 	float ColldX = 18;
 	float ColldY = 10;					// Collision coordinate 
